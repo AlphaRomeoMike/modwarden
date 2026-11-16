@@ -11,7 +11,7 @@
 .topbar {
   @apply flex h-[58px] items-center justify-between border-b px-[18px] text-slate-900 transition;
   border-color: var(--line-soft);
-  background: rgba(244, 248, 255, 0.78);
+  background: rgba(248, 248, 248, 0.78);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
 }
@@ -23,8 +23,8 @@
 .brand-wordmark {
   @apply block max-w-full;
   width: clamp(168px, 17vw, 224px);
-  aspect-ratio: 862 / 102;
-  background: #116ff9;
+  aspect-ratio: 611 / 80;
+  background: #656565;
   mask: url('/nodewarden-wordmark.svg') center / contain no-repeat;
   -webkit-mask: url('/nodewarden-wordmark.svg') center / contain no-repeat;
 }
@@ -36,7 +36,7 @@
 
 .brand-logo {
   @apply h-[42px] w-[53px] object-contain;
-  filter: drop-shadow(0 10px 22px rgba(43, 102, 217, 0.22));
+  filter: drop-shadow(0 10px 22px rgba(98, 98, 98, 0.22));
 }
 
 .topbar-actions {
@@ -98,8 +98,8 @@
 
 .theme-switch-slider {
   @apply absolute inset-0 cursor-pointer rounded-full border transition;
-  background: #dbeafe;
-  border-color: #9dbbec;
+  background: #e8e8e8;
+  border-color: #b8b8b8;
 }
 
 .theme-switch-slider::before {
@@ -108,8 +108,8 @@
   left: 2px;
   bottom: 2px;
   z-index: 2;
-  background: linear-gradient(180deg, #ffffff, #edf4ff);
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.14);
+  background: linear-gradient(180deg, #ffffff, #f3f3f3);
+  box-shadow: 0 2px 8px rgba(23, 23, 23, 0.14);
   transition:
     transform var(--dur-medium) var(--ease-out-strong),
     box-shadow var(--dur-fast) var(--ease-out-soft),
@@ -126,7 +126,7 @@
 }
 
 .theme-switch .moon svg {
-  fill: #5b86d6;
+  fill: #838383;
   @apply absolute h-4 w-4;
   top: 7px;
   left: 7px;
@@ -136,12 +136,12 @@
 }
 
 .theme-switch-input:checked + .theme-switch-slider {
-  background: linear-gradient(180deg, #173150, #122742);
-  border-color: #35527a;
+  background: linear-gradient(180deg, #2e2e2e, #242424);
+  border-color: #4f4f4f;
 }
 
 .theme-switch-input:focus + .theme-switch-slider {
-  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.22);
+  box-shadow: 0 0 0 2px rgba(96, 96, 96, 0.22);
 }
 
 .theme-switch-input:checked + .theme-switch-slider::before {
@@ -168,13 +168,13 @@
 
 .user-chip {
   @apply inline-flex h-[34px] items-center gap-1.5 rounded-full border px-3 text-sm font-semibold text-muted-strong transition;
-  background: rgba(249, 251, 255, 0.94);
-  border-color: rgba(148, 163, 184, 0.30);
-  box-shadow: 0 8px 16px rgba(13, 31, 68, 0.04);
+  background: rgba(251, 251, 251, 0.94);
+  border-color: rgba(161, 161, 161, 0.30);
+  box-shadow: 0 8px 16px rgba(30, 30, 30, 0.04);
 }
 
 .user-chip:hover {
-  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.06);
+  box-shadow: 0 10px 22px rgba(23, 23, 23, 0.06);
 }
 
 .app-main {
@@ -230,21 +230,21 @@
 
 .side-link:hover,
 .side-group-trigger:hover {
-  background: linear-gradient(135deg, #ffffff 0%, #fafbfc 100%);
-  border-color: rgba(128, 152, 192, 0.20);
+  background: linear-gradient(135deg, #ffffff 0%, #fbfbfb 100%);
+  border-color: rgba(150, 150, 150, 0.20);
   color: var(--text);
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06), inset 0 1px 0 rgba(255, 255, 255, 1);
+  box-shadow: 0 2px 8px rgba(23, 23, 23, 0.06), inset 0 1px 0 rgba(255, 255, 255, 1);
   transform: translateX(2px);
 }
 
 .side-link.active,
 .side-group-trigger.active {
-  background: linear-gradient(135deg, rgba(37, 99, 235, 0.12) 0%, rgba(37, 99, 235, 0.08) 100%);
-  border-color: rgba(37, 99, 235, 0.32);
+  background: linear-gradient(135deg, rgba(96, 96, 96, 0.12) 0%, rgba(96, 96, 96, 0.08) 100%);
+  border-color: rgba(96, 96, 96, 0.32);
   color: var(--primary-strong);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.5),
-    0 2px 8px rgba(37, 99, 235, 0.15);
+    0 2px 8px rgba(96, 96, 96, 0.15);
 }
 
 .side-group-chevron {
@@ -293,8 +293,8 @@
 }
 
 .side-sub-link.active {
-  background: rgba(37, 99, 235, 0.10);
-  border-color: rgba(37, 99, 235, 0.18);
+  background: rgba(96, 96, 96, 0.10);
+  border-color: rgba(96, 96, 96, 0.18);
   color: var(--primary-strong);
 }
 
@@ -304,15 +304,15 @@
 
 .nav-layout-trigger {
   @apply flex h-10 w-10 cursor-pointer items-center justify-center rounded-xl border p-0 transition;
-  border-color: rgba(128, 152, 192, 0.18);
+  border-color: rgba(150, 150, 150, 0.18);
   background: rgba(255, 255, 255, 0.46);
   color: var(--muted-strong);
 }
 
 .nav-layout-trigger:hover,
 .nav-layout-trigger.active {
-  border-color: rgba(37, 99, 235, 0.20);
-  background: #fff;
+  border-color: rgba(96, 96, 96, 0.20);
+  background: #ffffff;
   color: var(--primary-strong);
 }
 
@@ -369,7 +369,7 @@
 
 .mobile-sidebar-mask {
   @apply pointer-events-none invisible fixed inset-0 opacity-0;
-  background: rgba(15, 23, 42, 0.36);
+  background: rgba(23, 23, 23, 0.36);
   z-index: 54;
   transition:
     opacity 220ms var(--ease-smooth),

@@ -1,6 +1,6 @@
 {
-  "name": "NodeWarden",
-  "short_name": "NodeWarden",
+  "name": "ModWarden",
+  "short_name": "ModWarden",
   "description": "A lightweight Bitwarden-compatible vault for Cloudflare Workers.",
   "id": "/",
   "start_url": "/vault",
@@ -8,8 +8,8 @@
   "display": "standalone",
   "display_override": ["window-controls-overlay", "standalone", "minimal-ui"],
   "orientation": "any",
-  "background_color": "#eef4ff",
-  "theme_color": "#0f172a",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
   "categories": ["security", "productivity", "utilities"],
   "icons": [
     {

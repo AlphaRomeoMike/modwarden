@@ -11,7 +11,7 @@ import {
 import { demoBrandIconUrl } from '@/lib/demo-brand-icons';
 import { getCurrentNetworkStatus, subscribeNetworkStatus } from '@/lib/network-status';
 import { areWebsiteIconsEnabled } from '@/lib/website-icon-settings';
-import { firstCipherUri, hostFromUri, websiteIconUrl } from '@/lib/website-utils';
+import { cipherWebsiteHosts, websiteIconUrl } from '@/lib/website-utils';
 
 const ICON_LOAD_ROOT_MARGIN = '180px 0px';
 const SHOULD_LOAD_DEMO_BRAND_ICONS = __NODEWARDEN_DEMO__;
@@ -22,7 +22,9 @@ interface WebsiteIconProps {
 }
 
 export default function WebsiteIcon(props: WebsiteIconProps) {
-  const host = useMemo(() => hostFromUri(firstCipherUri(props.cipher)), [props.cipher]);
+  const hosts = useMemo(() => cipherWebsiteHosts(props.cipher), [props.cipher]);
+  // Use the first link whose site has not failed; when it fails, the status update re-renders onto the next one.
+  const host = hosts.find((candidate) => getWebsiteIconStatus(candidate) !== 'error') || '';
   const iconsEnabled = areWebsiteIconsEnabled();
   const src = iconsEnabled && host ? websiteIconUrl(host) : '';
   const nodeRef = useRef<HTMLSpanElement | null>(null);

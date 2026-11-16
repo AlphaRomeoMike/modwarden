@@ -94,7 +94,7 @@
 
 .not-found-star {
   @apply absolute h-[3px] w-[3px] rounded-full;
-  background: #fff;
+  background: #ffffff;
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.82);
   opacity: 0.72;
 }
@@ -103,7 +103,7 @@
 .not-found-star::after {
   @apply absolute rounded-full;
   content: "";
-  background: #fff;
+  background: #ffffff;
   box-shadow: 0 0 12px rgba(255, 255, 255, 0.7);
 }
 
@@ -175,7 +175,7 @@
   left: 66px;
   width: 88px;
   height: 132px;
-  background: #8db0c7;
+  background: #aaaaaa;
   border-radius: 44px 44px 0 0 / 27px 27px 0 0;
 }
 
@@ -185,7 +185,7 @@
   left: 68px;
   width: 85px;
   height: 70px;
-  background: linear-gradient(90deg, #e4ebef 0%, #e4ebef 50%, #fbfdfa 50%, #fbfdfa 100%);
+  background: linear-gradient(90deg, #eaeaea 0%, #eaeaea 50%, #fcfcfc 50%, #fcfcfc 100%);
 }
 
 .not-found-astro-head::after {
@@ -195,7 +195,7 @@
   left: 16px;
   width: 53px;
   height: 44px;
-  background: linear-gradient(180deg, #28c4df 0%, #28c4df 50%, #078dbb 50%, #078dbb 100%);
+  background: linear-gradient(180deg, #a5a5a5 0%, #a5a5a5 50%, #747474 50%, #747474 100%);
 }
 
 .not-found-astro-head::before {
@@ -205,8 +205,8 @@
   left: -4px;
   width: 11px;
   height: 22px;
-  background: #587789;
-  box-shadow: 81px 0 0 #587789;
+  background: #727272;
+  box-shadow: 81px 0 0 #727272;
 }
 
 .not-found-astro-body {
@@ -216,7 +216,7 @@
   width: 75px;
   height: 88px;
   border-radius: 36px / 18px;
-  background: linear-gradient(90deg, #e4ebef 0%, #e4ebef 50%, #fbfdfa 50%, #fbfdfa 100%);
+  background: linear-gradient(90deg, #eaeaea 0%, #eaeaea 50%, #fcfcfc 50%, #fcfcfc 100%);
 }
 
 .not-found-astro-panel {
@@ -225,7 +225,7 @@
   left: 11px;
   width: 53px;
   height: 36px;
-  background: #b8cdec;
+  background: #cbcbcb;
 }
 
 .not-found-astro-panel::before {
@@ -235,8 +235,8 @@
   left: 6px;
   width: 27px;
   height: 5px;
-  background: #fbfdfa;
-  box-shadow: 0 8px 0 #fbfdfa, 0 16px 0 #fbfdfa;
+  background: #fcfcfc;
+  box-shadow: 0 8px 0 #fcfcfc, 0 16px 0 #fcfcfc;
 }
 
 .not-found-astro-panel::after {
@@ -246,8 +246,8 @@
   right: 6px;
   width: 8px;
   height: 8px;
-  background: #fbfdfa;
-  box-shadow: 0 13px 0 2px #fbfdfa;
+  background: #fcfcfc;
+  box-shadow: 0 13px 0 2px #fcfcfc;
 }
 
 .not-found-astro-arm {
@@ -259,13 +259,13 @@
 
 .not-found-astro-arm-left {
   left: 28px;
-  background: #e4ebef;
+  background: #eaeaea;
   border-radius: 0 0 0 34px;
 }
 
 .not-found-astro-arm-right {
   right: 28px;
-  background: #fbfdfa;
+  background: #fcfcfc;
   border-radius: 0 0 34px 0;
 }
 
@@ -279,13 +279,13 @@
 
 .not-found-astro-arm-left::before {
   left: 0;
-  background: #e4ebef;
+  background: #eaeaea;
   border-radius: 44px 44px 0 105px / 44px 44px 0 96px;
 }
 
 .not-found-astro-arm-right::before {
   right: 0;
-  background: #fbfdfa;
+  background: #fcfcfc;
   border-radius: 44px 44px 105px 0 / 44px 44px 96px 0;
 }
 
@@ -299,12 +299,12 @@
 
 .not-found-astro-arm-left::after {
   left: 0;
-  background: #6e91a4;
+  background: #8b8b8b;
 }
 
 .not-found-astro-arm-right::after {
   right: 0;
-  background: #b6d2e0;
+  background: #cdcdcd;
 }
 
 .not-found-astro-leg {
@@ -316,13 +316,13 @@
 
 .not-found-astro-leg-left {
   left: 67px;
-  background: #e4ebef;
+  background: #eaeaea;
   transform: rotate(20deg);
 }
 
 .not-found-astro-leg-right {
   right: 64px;
-  background: #fbfdfa;
+  background: #fcfcfc;
   transform: rotate(-20deg);
 }
 
@@ -336,15 +336,15 @@
 
 .not-found-astro-leg-left::before {
   left: -18px;
-  background: #e4ebef;
-  border-bottom: 9px solid #6d96ac;
+  background: #eaeaea;
+  border-bottom: 9px solid #8f8f8f;
   border-radius: 27px 0 0 0;
 }
 
 .not-found-astro-leg-right::before {
   right: -18px;
-  background: #fbfdfa;
-  border-bottom: 9px solid #b0cfe4;
+  background: #fcfcfc;
+  border-bottom: 9px solid #cacaca;
   border-radius: 0 27px 0 0;
 }
 
@@ -354,21 +354,21 @@
 
 .not-found-logo {
   @apply h-14 w-14 shrink-0 object-contain;
-  filter: drop-shadow(0 8px 18px rgba(43, 102, 217, 0.22));
+  filter: drop-shadow(0 8px 18px rgba(98, 98, 98, 0.22));
 }
 
 .not-found-wordmark {
   @apply block max-w-full;
   width: clamp(200px, 38vw, 330px);
-  aspect-ratio: 862 / 102;
-  background: #116ff9;
+  aspect-ratio: 611 / 80;
+  background: #656565;
   mask: url('/nodewarden-wordmark.svg') center / contain no-repeat;
   -webkit-mask: url('/nodewarden-wordmark.svg') center / contain no-repeat;
 }
 
 .not-found-code {
   @apply rounded-full px-3 py-1 text-sm font-extrabold;
-  background: #eef4ff;
+  background: #f4f4f4;
   color: var(--primary-hover);
 }
 
@@ -466,14 +466,14 @@
 
 .standalone-brand-logo {
   @apply h-14 w-[70px] shrink-0 object-contain;
-  filter: drop-shadow(0 8px 18px rgba(43, 102, 217, 0.22));
+  filter: drop-shadow(0 8px 18px rgba(98, 98, 98, 0.22));
 }
 
 .standalone-brand-wordmark {
   @apply block max-w-full;
   width: clamp(200px, 30vw, 340px);
-  aspect-ratio: 862 / 102;
-  background: #116ff9;
+  aspect-ratio: 611 / 80;
+  background: #656565;
   mask: url('/nodewarden-wordmark.svg') center / contain no-repeat;
   -webkit-mask: url('/nodewarden-wordmark.svg') center / contain no-repeat;
 }
@@ -550,7 +550,7 @@
 
 .jwt-warning-head {
   @apply mb-2.5 flex items-center justify-center gap-2.5 text-center;
-  color: #b45309;
+  color: #626262;
 }
 
 .jwt-warning-box {
@@ -559,17 +559,17 @@
 
 .jwt-warning-label {
   @apply mb-1.5 text-[13px] font-bold;
-  color: #92400e;
+  color: #4e4e4e;
 }
 
 .jwt-warning-copy {
   @apply m-0 mb-3.5 leading-[1.6];
-  color: #475569;
+  color: #535353;
 }
 
 .jwt-warning-list {
   @apply m-0 pl-[18px] leading-[1.55];
-  color: #334155;
+  color: #3f3f3f;
 }
 
 .jwt-inline-link {
@@ -591,7 +591,7 @@
 }
 
 .jwt-secret-row > span {
-  color: #64748b;
+  color: #727272;
 }
 
 .jwt-generator {
@@ -604,7 +604,7 @@
 
 .jwt-copy-hint {
   @apply text-[13px] font-bold;
-  color: #15803d;
+  color: #646464;
 }
 
 .standalone-footer {

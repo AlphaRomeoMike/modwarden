@@ -143,7 +143,7 @@
 :root[data-theme='dark'] .btn-primary {
   background: var(--primary);
   border-color: transparent;
-  color: #08111f;
+  color: #101010;
 }
 
 :root[data-theme='dark'] .btn-danger {
@@ -547,7 +547,7 @@ h4 {
 .btn-primary {
   background: var(--primary);
   border-color: transparent;
-  color: #fff;
+  color: #ffffff;
   box-shadow: 0 8px 18px color-mix(in srgb, var(--primary) 20%, transparent);
 }
 
@@ -991,7 +991,7 @@ textarea {
 }
 
 :root[data-theme='dark'] .btn-primary {
-  color: #08111f;
+  color: #101010;
 }
 
 @media (max-width: 1180px) {
@@ -1490,4 +1490,39 @@ input[type='file'].input::file-selector-button {
     font-size: 12px;
     font-weight: 800;
   }
+}
+
+/* CTAs: every button is the inverse of the page and sits elevated.
+   The dark selectors match the specificity of the dark-theme variant rules above. */
+:root {
+  --cta-shadow: 0 1px 2px rgba(0, 0, 0, 0.24), 0 4px 12px rgba(0, 0, 0, 0.18);
+  --cta-shadow-hover: 0 2px 4px rgba(0, 0, 0, 0.26), 0 10px 22px rgba(0, 0, 0, 0.22);
+}
+
+:root[data-theme='dark'] {
+  --cta-shadow: 0 1px 2px rgba(255, 255, 255, 0.16), 0 4px 14px rgba(255, 255, 255, 0.14);
+  --cta-shadow-hover: 0 2px 4px rgba(255, 255, 255, 0.2), 0 10px 24px rgba(255, 255, 255, 0.2);
+}
+
+:root .btn,
+:root[data-theme='dark'] .btn {
+  background: var(--text);
+  border-color: var(--text);
+  color: var(--panel);
+  box-shadow: var(--cta-shadow);
+}
+
+:root .btn:hover:not(:disabled),
+:root[data-theme='dark'] .btn:hover:not(:disabled) {
+  background: var(--text);
+  box-shadow: var(--cta-shadow-hover);
+}
+
+:root .btn:disabled,
+:root[data-theme='dark'] .btn:disabled {
+  background: var(--text);
+  border-color: var(--text);
+  color: var(--panel);
+  box-shadow: none;
+  opacity: 0.4;
 }
