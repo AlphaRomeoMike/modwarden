@@ -182,6 +182,10 @@ export default function ConfirmDialog(props: ConfirmDialogProps) {
   return createPortal((
     <div
       className={`dialog-mask ${props.variant === 'warning' ? 'warning' : ''} ${props.open && !closing ? 'open' : ''} ${closing ? 'closing' : ''}`}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby={titleId}
+      aria-describedby={hasMessage ? messageId : undefined}
       onPointerDown={(event) => {
         maskPointerStartedRef.current = event.target === event.currentTarget;
       }}
@@ -193,10 +197,6 @@ export default function ConfirmDialog(props: ConfirmDialogProps) {
       <form
         ref={cardRef}
         className={`dialog-card ${props.variant === 'warning' ? 'warning' : ''} ${props.open && !closing ? 'open' : ''} ${closing ? 'closing' : ''}`}
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby={titleId}
-        aria-describedby={hasMessage ? messageId : undefined}
         tabIndex={-1}
         onKeyDown={handleDialogKeyDown}
         onSubmit={(e) => {
