@@ -10,6 +10,7 @@ import {
   isWebVaultHidden,
   webVaultNotFoundResponse,
 } from './web-vault-visibility';
+import { trimChar } from '../shared/trim-char';
 
 let dbInitialized = false;
 let dbInitError: string | null = null;
@@ -17,7 +18,7 @@ let dbInitPromise: Promise<void> | null = null;
 
 function normalizeRequestUrl(request: Request): Request {
   const url = new URL(request.url);
-  const normalizedPathname = url.pathname.length <= 1 ? url.pathname : url.pathname.replace(/\/+$/, '');
+  const normalizedPathname = url.pathname.length <= 1 ? url.pathname : trimChar(url.pathname, '/', 'end');
   if (normalizedPathname === url.pathname) return request;
 
   url.pathname = normalizedPathname;

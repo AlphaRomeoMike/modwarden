@@ -1,0 +1,15 @@
+# Accepted risks for the OSV dependency scan. Each entry expires so it is re-checked.
+
+# picomatch ReDoS via repeated extglobs. No patched release exists (all versions <= 4.0.7 are affected).
+# Only build tooling uses it (vite, rollup plugin utils, tinyglobby, fdir) with patterns from project
+# config; it is not a runtime dependency and is in neither the web app build nor the Worker bundle.
+# Accepted on 2026-11-17. On expiry, update picomatch if a fix has shipped, otherwise re-assess.
+[[IgnoredVulns]]
+id = "GHSA-fc5q-39xc-vjpf"
+ignoreUntil = 2027-02-15
+reason = "Build-time-only dependency (vite/rollup/tinyglobby/fdir), not shipped; no patched version yet"
+
+[[IgnoredVulns]]
+id = "CVE-2026-112366"
+ignoreUntil = 2027-02-15
+reason = "Alias of GHSA-fc5q-39xc-vjpf; see above"

@@ -37,6 +37,7 @@ import { StorageService } from './services/storage';
 import type { Env } from './types';
 import { getConfiguredWebAuthnAllowedOrigins } from './utils/origins';
 import { buildConfigResponse } from './config-response';
+import { trimChar } from '../shared/trim-char';
 
 type PublicRateLimiter = (category?: string, maxRequests?: number) => Promise<Response | null>;
 type JwtUnsafeReason = 'missing' | 'too_short' | null;
@@ -99,7 +100,7 @@ function handleMissingWebsiteIcon(): Response {
 function normalizeIconHost(rawHost: string): string | null {
   let decoded: string;
   try {
-    decoded = decodeURIComponent(String(rawHost || '').trim()).toLowerCase().replace(/\.+$/, '');
+    decoded = trimChar(decodeURIComponent(String(rawHost || '').trim()).toLowerCase(), '.', 'end');
   } catch {
     return null;
   }

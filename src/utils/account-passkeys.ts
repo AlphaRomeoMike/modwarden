@@ -13,6 +13,7 @@ import type {
 } from '../types';
 import { base64UrlToBytes, bytesToBase64Url } from './passkey';
 import { getConfiguredWebAuthnAllowedOrigins } from './origins';
+import { trimChar } from '../../shared/trim-char';
 
 const ACCOUNT_PASSKEY_TOKEN_TYPE = 'nodewarden.account-passkey.challenge.v1';
 const ACCOUNT_PASSKEY_TOKEN_TTL_MS = 17 * 60 * 1000;
@@ -68,7 +69,7 @@ function uuidToDotNetGuidBytes(value: string): Uint8Array | null {
 }
 
 function normalizeWebAuthnBase64(value: unknown): string {
-  return String(value || '').replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/g, '');
+  return trimChar(String(value || '').replace(/\+/g, '-').replace(/\//g, '_'), '=', 'end');
 }
 
 async function importHmacKey(secret: string): Promise<CryptoKey> {

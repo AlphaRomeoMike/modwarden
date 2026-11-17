@@ -2,18 +2,15 @@
 
 ## Reporting a Vulnerability
 
-Thank you for helping keep NodeWarden safe.
+Thank you for helping keep ModWarden safe.
 
 Please **do not report security vulnerabilities through public GitHub issues, discussions, pull requests, or chat groups**.
 
-Use GitHub Private Vulnerability Reporting instead:
+Report it privately through GitHub Private Vulnerability Reporting:
+https://github.com/AlphaRomeoMike/modwarden/security/advisories/new
+(the repository's **Security** tab, then **Report a vulnerability**).
 
-1. Open the NodeWarden repository on GitHub.
-2. Go to **Security and quality**.
-3. Click **Report a vulnerability**.
-4. Submit the report privately.
-
-NodeWarden is independent from Bitwarden. Please do not report NodeWarden-specific issues to the official Bitwarden team.
+ModWarden is based on [NodeWarden](https://github.com/shuaiplus/nodewarden) and is independent from Bitwarden. Please do not report ModWarden-specific issues to the official Bitwarden team. Issues in code inherited unchanged from NodeWarden can also be reported to NodeWarden directly.
 
 ## What to Include
 
@@ -31,7 +28,7 @@ Please redact real passwords, tokens, private keys, recovery keys, vault data, a
 
 ## Scope
 
-Security reports are welcome for issues affecting NodeWarden itself, including:
+Security reports are welcome for issues affecting ModWarden itself, including:
 
 * Authentication and session handling.
 * User authorization and cross-user access.
@@ -39,14 +36,14 @@ Security reports are welcome for issues affecting NodeWarden itself, including:
 * Import, export, backup, and restore.
 * Passkey, WebAuthn, and two-factor authentication.
 * Secret handling and provider credentials.
-* Cloudflare Workers, D1, R2, KV, WebDAV, or S3 behavior caused by NodeWarden code or documentation.
+* Cloudflare Workers, D1, R2, KV, WebDAV, or S3 behavior caused by ModWarden code or documentation.
 
 ## Out of Scope
 
 The following are usually out of scope:
 
 * Issues only affecting third-party services or user infrastructure.
-* Misconfigured personal deployments not caused by NodeWarden defaults.
+* Misconfigured personal deployments not caused by ModWarden defaults.
 * Social engineering or phishing.
 * Denial-of-service testing.
 * Scanner-only reports without a practical exploit path.
@@ -54,7 +51,7 @@ The following are usually out of scope:
 
 ## Response
 
-NodeWarden is maintained on a best-effort basis.
+ModWarden is maintained on a best-effort basis.
 
 We aim to acknowledge valid private reports within 72 hours, investigate the issue, and release a fix or mitigation when appropriate.
 
@@ -73,4 +70,4 @@ Security fixes are generally provided for the latest release and the latest code
 
 ## Rewards
 
-NodeWarden does not currently operate a paid bug bounty program.
+ModWarden does not currently operate a paid bug bounty program.

@@ -24,6 +24,7 @@ import {
   createDefaultBackupScheduleConfig,
   createDefaultBackupSettings as createSharedDefaultBackupSettings,
 } from '../../shared/backup-schema';
+import { trimChar } from '../../shared/trim-char';
 
 export const BACKUP_SETTINGS_CONFIG_KEY = 'backup.settings.v1';
 const BACKUP_RUNTIME_CONFIG_KEY = 'backup.runtime.v1';
@@ -222,7 +223,7 @@ export function normalizeBackupEndpointUrl(value: string, label: string): string
     throw new Error(`${label} must not include query or fragment`);
   }
   assertBackupEndpointHostAllowed(parsed.hostname, label);
-  return parsed.toString().replace(/\/+$/, '');
+  return trimChar(parsed.toString(), '/', 'end');
 }
 
 function assertValidTimeZone(timezone: string): string {
