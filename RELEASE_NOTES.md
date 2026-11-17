@@ -21,6 +21,46 @@ Release note writing rules:
 7. The English and Chinese versions should match in content and ordering, not be two different summaries.
 -->
 
+# v1.0.0 - ModWarden Rebrand, Tag-Based Deploys, and Security Hardening
+
+### Added
+
+1. **ModWarden branding.** The Web Vault now uses the ModWarden name, a new half-gear/half-shield logo and app icons, and a black-and-white theme with inverse, elevated buttons; site and card logos keep their colours. Version numbering restarts at 1.0.0 for ModWarden, which builds on NodeWarden 1.8.1. Item icons also fall back to the next link that has a favicon. Commits: [b01419c](https://github.com/AlphaRomeoMike/modwarden/commit/b01419c2cac989d15d495dc036eb776e7262fd17), [7c78f8c](https://github.com/AlphaRomeoMike/modwarden/commit/7c78f8cbe014e147167aca8d67635c3c81f94d62), [db9f52b](https://github.com/AlphaRomeoMike/modwarden/commit/db9f52b9fa161bff3594eef26d0a67c104d23fb8).
+
+1. **Production deploys from version tags.** Pushing a `v*` tag deploys that version to Cloudflare in KV storage mode through the `production` environment, and a manual run is only accepted for a tag, so untagged code never reaches production. Commits: [b3a4a76](https://github.com/AlphaRomeoMike/modwarden/commit/b3a4a766d9bd964e6093f2bea3122cddbe6d0d2a), [81df20e](https://github.com/AlphaRomeoMike/modwarden/commit/81df20e2666ddb47054bb640094afb350eeb5e6a).
+
+### Improved
+
+1. **Checks on every pull request.** CI builds the Web Vault, type-checks, runs every test suite and bundles the Worker before changes merge. Dependabot waits 7 days before proposing a new release, workflows grant write permissions per job only, and SECURITY.md points to this repository's private vulnerability reporting. Commits: [a492fae](https://github.com/AlphaRomeoMike/modwarden/commit/a492faea2db070acf615e160525d2cd0eecd6ea6), [c4b54ae](https://github.com/AlphaRomeoMike/modwarden/commit/c4b54aec37c7f567902d55295134c3a565070e47).
+
+1. **Updated dependencies.** Preact moves to 11.2.0, @simplewebauthn/server to 14.1.0 and TypeScript to 7.0.2, along with minor and patch updates to TanStack Query, zip.js, Lucide icons, Tailwind CSS and Cloudflare Workers types. Commits: [2ec51e9](https://github.com/AlphaRomeoMike/modwarden/commit/2ec51e9dde888ad90dd911e6f182c1e387b36f2d), [38abea9](https://github.com/AlphaRomeoMike/modwarden/commit/38abea91bf6723e12076358f61d8f72e11205d4d), [67846a2](https://github.com/AlphaRomeoMike/modwarden/commit/67846a2aef5de8d4a4e76c634041eeb0b8063409), [ebebc6b](https://github.com/AlphaRomeoMike/modwarden/commit/ebebc6ba067d2115b9de22130a22c6930c6cd34b).
+
+### Fixed
+
+1. **No CPU spikes from long runs of repeated characters.** Trimming trailing slashes, equals signs and similar characters from passkey login fields, request paths and icon hosts now takes linear time. Previously a single crafted request could spend seconds of Worker CPU. Commit: [40d2ef6](https://github.com/AlphaRomeoMike/modwarden/commit/40d2ef6b5231c3f53f5576a71ad0ec0bea6be91c).
+
+1. **Export dialog stays open after a failed export.** The master-password dialog now closes only when the export succeeds, so you can retry without starting over. Commit: [8a939f7](https://github.com/AlphaRomeoMike/modwarden/commit/8a939f7f19026500f72c9df20ba6d77e141f5b4b).
+
+---
+
+### 新增
+
+1. **ModWarden 品牌。** 网页密码库改用 ModWarden 名称、新的半齿轮半盾牌标志和应用图标，以及黑白主题和反色、带阴影的按钮；网站和卡片标志保留原有颜色。ModWarden 的版本号从 1.0.0 重新开始，基于 NodeWarden 1.8.1。项目图标也会回退到下一个带有网站图标的链接。提交：[b01419c](https://github.com/AlphaRomeoMike/modwarden/commit/b01419c2cac989d15d495dc036eb776e7262fd17)、[7c78f8c](https://github.com/AlphaRomeoMike/modwarden/commit/7c78f8cbe014e147167aca8d67635c3c81f94d62)、[db9f52b](https://github.com/AlphaRomeoMike/modwarden/commit/db9f52b9fa161bff3594eef26d0a67c104d23fb8)。
+
+1. **通过版本标签部署生产环境。** 推送 `v*` 标签会通过 `production` 环境以 KV 存储模式将该版本部署到 Cloudflare；手动运行也只接受标签，因此未打标签的代码不会进入生产环境。提交：[b3a4a76](https://github.com/AlphaRomeoMike/modwarden/commit/b3a4a766d9bd964e6093f2bea3122cddbe6d0d2a)、[81df20e](https://github.com/AlphaRomeoMike/modwarden/commit/81df20e2666ddb47054bb640094afb350eeb5e6a)。
+
+### 改进
+
+1. **每个拉取请求都会检查。** 合并前，CI 会构建网页密码库、进行类型检查、运行所有测试并打包 Worker。Dependabot 会在新版本发布 7 天后才提出更新，工作流只为单个任务授予写入权限，SECURITY.md 指向本仓库的私密漏洞报告。提交：[a492fae](https://github.com/AlphaRomeoMike/modwarden/commit/a492faea2db070acf615e160525d2cd0eecd6ea6)、[c4b54ae](https://github.com/AlphaRomeoMike/modwarden/commit/c4b54aec37c7f567902d55295134c3a565070e47)。
+
+1. **依赖更新。** Preact 升级到 11.2.0，@simplewebauthn/server 升级到 14.1.0，TypeScript 升级到 7.0.2，同时对 TanStack Query、zip.js、Lucide 图标、Tailwind CSS 和 Cloudflare Workers 类型进行了小版本和补丁更新。提交：[2ec51e9](https://github.com/AlphaRomeoMike/modwarden/commit/2ec51e9dde888ad90dd911e6f182c1e387b36f2d)、[38abea9](https://github.com/AlphaRomeoMike/modwarden/commit/38abea91bf6723e12076358f61d8f72e11205d4d)、[67846a2](https://github.com/AlphaRomeoMike/modwarden/commit/67846a2aef5de8d4a4e76c634041eeb0b8063409)、[ebebc6b](https://github.com/AlphaRomeoMike/modwarden/commit/ebebc6ba067d2115b9de22130a22c6930c6cd34b)。
+
+### 修复
+
+1. **大量重复字符不再导致 CPU 飙升。** 从通行密钥登录字段、请求路径和图标主机中去除末尾斜杠、等号等字符的操作现在为线性时间。此前，一个精心构造的请求可能消耗数秒的 Worker CPU。提交：[40d2ef6](https://github.com/AlphaRomeoMike/modwarden/commit/40d2ef6b5231c3f53f5576a71ad0ec0bea6be91c)。
+
+1. **导出失败后导出对话框保持打开。** 主密码对话框现在只在导出成功后关闭，因此无需重新开始即可重试。提交：[8a939f7](https://github.com/AlphaRomeoMike/modwarden/commit/8a939f7f19026500f72c9df20ba6d77e141f5b4b)。
+
 # v1.8.1 - Expanded Generators, Safer Vault Editing, and Client Compatibility
 
 ### Added
