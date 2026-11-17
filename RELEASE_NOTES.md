@@ -21,6 +21,26 @@ Release note writing rules:
 7. The English and Chinese versions should match in content and ordering, not be two different summaries.
 -->
 
+# v1.0.1 - Vault Database Moved to Asia-Pacific
+
+### Improved
+
+1. **Vault database moved to Asia-Pacific.** The D1 database now runs in the APAC region instead of western North America, so vault requests from Asia no longer cross the Pacific for every query. The previous database held no accounts or vault data, so nothing needs migrating. Commit: [d3be1a4](https://github.com/AlphaRomeoMike/modwarden/commit/d3be1a4e6336b0c65e921ee6a8d869908635d3b4).
+
+### Fixed
+
+1. **Deploys always use the production database.** The deploy configuration now names the database by its ID. Before, a deploy that could not find the live Worker's database would create a new, empty one and connect the vault to it, which would look like data loss. Commit: [d3be1a4](https://github.com/AlphaRomeoMike/modwarden/commit/d3be1a4e6336b0c65e921ee6a8d869908635d3b4).
+
+---
+
+### 改进
+
+1. **密码库数据库迁移到亚太地区。** D1 数据库现在运行在亚太（APAC）区域，而不是北美西部，因此来自亚洲的密码库请求不再为每次查询跨越太平洋。之前的数据库中没有账户或密码库数据，因此无需迁移。提交：[d3be1a4](https://github.com/AlphaRomeoMike/modwarden/commit/d3be1a4e6336b0c65e921ee6a8d869908635d3b4)。
+
+### 修复
+
+1. **部署始终使用生产数据库。** 部署配置现在通过 ID 指定数据库。此前，如果部署找不到线上 Worker 正在使用的数据库，会创建一个新的空数据库并将密码库连接到它，看起来就像数据丢失。提交：[d3be1a4](https://github.com/AlphaRomeoMike/modwarden/commit/d3be1a4e6336b0c65e921ee6a8d869908635d3b4)。
+
 # v1.0.0 - ModWarden Rebrand, Tag-Based Deploys, and Security Hardening
 
 ### Added
