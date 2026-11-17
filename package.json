@@ -11,6 +11,7 @@
   },
   "scripts": {
     "dev": "wrangler dev -c wrangler.toml",
+    "test": "npm run i18n:validate && npm run test:config-compatibility && npm run test:vault-compatibility && npm run test:web-crypto && npm run test:notifications-security && npm run test:webauthn-connectors && npm run test:website-icons && npm run test:trim-char",
     "dev:kv": "wrangler dev -c wrangler.kv.toml",
     "dev:demo": "vite --config webapp/vite.config.ts --mode demo --host 127.0.0.1 --port 5174",
     "build": "vite build --config webapp/vite.config.ts",
@@ -22,6 +23,7 @@
     "test:vault-compatibility": "tsx --tsconfig webapp/tsconfig.json --import ./scripts/offline-workers-loader.mjs --test scripts/vault-compatibility.test.ts",
     "test:folder-tree": "tsx --test scripts/folder-tree.test.ts",
     "test:website-icons": "tsx --test scripts/website-icon-hosts.test.ts",
+    "test:trim-char": "tsx --test scripts/trim-char.test.ts",
     "test:web-crypto": "tsx --test scripts/web-crypto-availability.test.ts",
     "test:notifications-security": "tsx --test scripts/notifications-security.test.ts",
     "test:webauthn-mobile": "node --test scripts/webauthn-mobile-connector.test.mjs",

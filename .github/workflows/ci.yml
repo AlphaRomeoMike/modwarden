@@ -1,0 +1,42 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Build, type-check and test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e
+        with:
+          node-version-file: .node-version
+          cache: npm
+
+      - run: npm ci
+
+      - run: npm run build
+
+      - name: Type-check web app
+        run: npx tsc --noEmit -p webapp/tsconfig.json
+
+      - name: Type-check Worker
+        run: npx tsc --noEmit -p tsconfig.json
+
+      - run: npm test
+
+      - name: Bundle Worker (dry run, no deploy)
+        run: npx wrangler deploy --dry-run -c wrangler.kv.toml --outdir "$RUNNER_TEMP/worker-bundle"
