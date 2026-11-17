@@ -578,8 +578,11 @@ export default function App() {
     setTotpCode('');
     setPasskeyPassword('');
     setUnlockPassword('');
+    // Typed credentials are spent once login succeeds; keeping them would refill the forms after Sign Out.
+    setLoginValues((prev) => ({ ...prev, password: '' }));
+    setRecoverValues({ email: '', password: '', recoveryCode: '' });
     setPhase('app');
-    if (location === '/' || location === '/login' || location === '/register' || location === '/lock') {
+    if (AUTH_ROUTES.has(location)) {
       navigate('/vault');
     }
     void (async () => {
@@ -799,6 +802,7 @@ export default function App() {
         return;
       }
       setLoginValues({ email: registerValues.email.toLowerCase(), password: '' });
+      setRegisterValues((prev) => ({ ...prev, password: '', password2: '' }));
       setPhase('login');
       navigate('/login');
       pushToast('success', t('txt_registration_succeeded_please_sign_in'));
