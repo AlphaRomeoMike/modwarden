@@ -39,7 +39,7 @@ interface VaultSidebarProps {
   mobileSidebarOpen: boolean;
   folderSortMode: VaultSortMode;
   folderSortMenuOpen: boolean;
-  folderSortMenuRef: RefObject<HTMLDivElement>;
+  folderSortMenuRef: RefObject<HTMLDivElement | null>;
   onCloseMobileSidebar: () => void;
   onChangeFilter: (filter: SidebarFilter) => void;
   onOpenDeleteAllFolders: () => void;
