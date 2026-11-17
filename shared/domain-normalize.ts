@@ -1,3 +1,4 @@
+import { trimChar } from './trim-char';
 const MULTI_LABEL_PUBLIC_SUFFIXES = new Set([
   'ac.cn',
   'com.cn',
@@ -114,10 +115,7 @@ function extractHost(input: string): string {
     if (colonIndex > -1 && raw.indexOf(':') === colonIndex) raw = raw.slice(0, colonIndex);
   }
 
-  return raw
-    .replace(/^\*+\./, '')
-    .replace(/^\.+/, '')
-    .replace(/\.+$/, '');
+  return trimChar(raw.replace(/^\*+\./, ''), '.');
 }
 
 function isValidHost(host: string): boolean {

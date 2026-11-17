@@ -51,6 +51,7 @@ import { notifyUserBackupProgress, notifyUserBackupRestoreProgress } from '../du
 import { getMultipartRequestMaxBytes } from '../utils/direct-upload';
 import { verifyPasskeyUserVerificationToken } from '../utils/user-verification-token';
 import { unzipSync } from 'fflate';
+import { trimChar } from '../../shared/trim-char';
 
 function isAdmin(user: User): boolean {
   return user.role === 'admin' && user.status === 'active';
@@ -137,7 +138,7 @@ function getBackupDestinationSummary(destination: BackupDestinationRecord | null
 }
 
 function ensureBackupBlobName(value: string): string {
-  const normalized = String(value || '').trim().replace(/\\/g, '/').replace(/^\/+|\/+$/g, '');
+  const normalized = trimChar(String(value || '').trim().replace(/\\/g, '/'), '/');
   if (!normalized) {
     throw new Error('Backup attachment blob is required');
   }

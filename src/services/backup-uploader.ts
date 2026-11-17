@@ -5,6 +5,7 @@ import {
   WebDavBackupDestination,
   normalizeBackupEndpointUrl,
 } from './backup-config';
+import { trimChar } from '../../shared/trim-char';
 
 export interface BackupUploadResult {
   provider: BackupDestinationType;
@@ -232,7 +233,7 @@ function ensureDestinationConfigReady(destination: BackupDestinationRecord): voi
 }
 
 function buildWebDavUrl(baseUrl: string, relativePath: string): string {
-  const trimmedBase = baseUrl.replace(/\/+$/, '');
+  const trimmedBase = trimChar(baseUrl, '/', 'end');
   const normalized = normalizeRelativePath(relativePath);
   return normalized ? `${trimmedBase}/${encodePathSegments(normalized)}` : trimmedBase;
 }
@@ -473,7 +474,7 @@ function isBucketHostedS3Endpoint(endpoint: URL, bucket: string): boolean {
 }
 
 function s3BucketBaseUrl(config: S3BackupDestination): URL {
-  const endpoint = new URL(config.endpoint.replace(/\/+$/, ''));
+  const endpoint = new URL(trimChar(config.endpoint, '/', 'end'));
   const bucket = config.bucket.trim();
 
   if (config.addressingStyle === 'virtual-hosted-style') {
@@ -482,11 +483,11 @@ function s3BucketBaseUrl(config: S3BackupDestination): URL {
     return endpoint;
   }
 
-  return new URL(`${endpoint.toString().replace(/\/+$/, '')}/${encodeURIComponent(bucket)}`);
+  return new URL(`${trimChar(endpoint.toString(), '/', 'end')}/${encodeURIComponent(bucket)}`);
 }
 
 function s3ObjectUrl(config: S3BackupDestination, objectKey: string): URL {
-  return new URL(`${s3BucketBaseUrl(config).toString().replace(/\/+$/, '')}/${encodePathSegments(objectKey)}`);
+  return new URL(`${trimChar(s3BucketBaseUrl(config).toString(), '/', 'end')}/${encodePathSegments(objectKey)}`);
 }
 
 function normalizeS3ObjectKey(config: S3BackupDestination, relativePath: string): string {
@@ -588,7 +589,7 @@ async function listS3Entries(config: S3BackupDestination, relativePath: string):
         : fullPrefix;
       const normalizedRelative = trimSlashes(relative);
       if (!normalizedRelative) continue;
-      const itemPath = normalizedRelative.replace(/\/+$/, '');
+      const itemPath = trimChar(normalizedRelative, '/', 'end');
       if ((parentPath(itemPath) || '') !== currentPath) continue;
       items.push({
         path: itemPath,
