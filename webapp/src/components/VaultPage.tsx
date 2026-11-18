@@ -158,8 +158,8 @@ export default function VaultPage(props: VaultPageProps) {
     const onQuickAdd = () => {
       startCreate(1);
     };
-    window.addEventListener('nodewarden:add-item', onQuickAdd);
-    return () => window.removeEventListener('nodewarden:add-item', onQuickAdd);
+    window.addEventListener('modwarden:add-item', onQuickAdd);
+    return () => window.removeEventListener('modwarden:add-item', onQuickAdd);
   }, []);
 
   useEffect(() => {

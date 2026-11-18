@@ -10,7 +10,7 @@ interface JwtWarningPageProps {
 }
 
 const CLOUDFLARE_SETTINGS_URL =
-  'https://dash.cloudflare.com/?to=/:account/workers/services/view/nodewarden/production/settings';
+  'https://dash.cloudflare.com/?to=/:account/workers/services/view/modwarden/production/settings';
 
 export default function JwtWarningPage(props: JwtWarningPageProps) {
   const [seed, setSeed] = useState(0);

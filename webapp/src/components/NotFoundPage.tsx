@@ -12,7 +12,7 @@ export default function NotFoundPage(props: NotFoundPageProps) {
     <main className="not-found-page">
       <section className="not-found-shell" aria-labelledby="not-found-title">
         <div className="not-found-brand">
-          <img src="/nodewarden-logo.svg" alt="ModWarden logo" className="not-found-logo" />
+          <img src="/modwarden-logo.svg" alt="ModWarden logo" className="not-found-logo" />
           <span className="not-found-wordmark" aria-label="ModWarden" role="img" />
         </div>
         <div className="not-found-copy">

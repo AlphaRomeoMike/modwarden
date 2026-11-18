@@ -26,7 +26,7 @@ import {
   saveOfflineUnlockRecord,
   unlockOfflineVaultWithMasterKey,
 } from '@/lib/offline-auth';
-import { probeNodeWardenService } from '@/lib/network-status';
+import { probeModWardenService } from '@/lib/network-status';
 import { setWebsiteIconsEnabled } from '@/lib/website-icon-settings';
 import type { AccountPasskeyPrfOption, AppPhase, Profile, SessionState, TokenSuccess, WebBootstrapResponse } from '@/lib/types';
 
@@ -424,7 +424,7 @@ export async function hydrateLockedSession(
     return { kind: 'expired', session: null, profile: null };
   }
   if (refreshOutcome.kind === 'transient') {
-    if (hasOfflineUnlock && (browserReportsOffline() || !(await probeNodeWardenService()))) {
+    if (hasOfflineUnlock && (browserReportsOffline() || !(await probeModWardenService()))) {
       return {
         kind: 'ready',
         session,
@@ -742,7 +742,7 @@ export async function performUnlock(
       useRememberToken: true,
     });
   } catch {
-    if (hasOfflineUnlock && (browserReportsOffline() || !(await probeNodeWardenService()))) {
+    if (hasOfflineUnlock && (browserReportsOffline() || !(await probeModWardenService()))) {
       return unlockOffline();
     }
     return {

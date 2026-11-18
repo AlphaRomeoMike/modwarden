@@ -40,7 +40,7 @@ export interface CipherResponseOptions {
 }
 
 export function shouldPreserveRepairableCipherUris(request: Request): boolean {
-  return request.headers.get('X-NodeWarden-Web') === '1';
+  return request.headers.get('X-ModWarden-Web') === '1';
 }
 
 function cipherResponseOptionsForRequest(request: Request): CipherResponseOptions {
@@ -1456,7 +1456,7 @@ export async function handleBulkDeleteCiphers(request: Request, env: Env, userId
   return new Response(null, { status: 204 });
 }
 
-// PUT /api/ciphers/restore (POST retained for older NodeWarden clients)
+// PUT /api/ciphers/restore (POST retained for older ModWarden clients)
 export async function handleBulkRestoreCiphers(request: Request, env: Env, userId: string): Promise<Response> {
   const storage = new StorageService(env.DB);
 

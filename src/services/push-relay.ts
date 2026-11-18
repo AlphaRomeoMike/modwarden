@@ -34,7 +34,7 @@ function randomInstallationEmail(): string {
   const bytes = new Uint8Array(10);
   crypto.getRandomValues(bytes);
   const localPart = Array.from(bytes, (byte) => (byte % 36).toString(36)).join('');
-  return `${localPart}@nodewarden.app`;
+  return `${localPart}@modwarden.app`;
 }
 
 async function getConfigKeyPresence(db: D1Database, key: string): Promise<string | null> {

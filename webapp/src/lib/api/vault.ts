@@ -23,7 +23,7 @@ import { cipherFieldMetadata } from '../cipher-fields';
 import { t } from '../i18n';
 
 type CipherLoginData = NonNullable<Cipher['login']>;
-const NODEWARDEN_WEB_REPAIR_HEADER = 'X-NodeWarden-Web';
+const MODWARDEN_WEB_REPAIR_HEADER = 'X-ModWarden-Web';
 
 export async function getFolders(authedFetch: AuthedFetch, cacheKey: string): Promise<Folder[]> {
   const body = await loadVaultCoreSyncSnapshot(authedFetch, cacheKey);
@@ -1062,7 +1062,7 @@ export async function repairCipherUriChecksums(
 
     const resp = await authedFetch(`/api/ciphers/${encodeURIComponent(cipher.id)}`, {
       method: 'PUT',
-      headers: { 'Content-Type': 'application/json', [NODEWARDEN_WEB_REPAIR_HEADER]: '1' },
+      headers: { 'Content-Type': 'application/json', [MODWARDEN_WEB_REPAIR_HEADER]: '1' },
       body: JSON.stringify(payload),
     });
     if (!resp.ok) throw new Error(await parseErrorMessage(resp, 'Repair URI checksum failed'));
@@ -1485,7 +1485,7 @@ export async function updateCipher(
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
-      ...(options?.webRepair ? { [NODEWARDEN_WEB_REPAIR_HEADER]: '1' } : {}),
+      ...(options?.webRepair ? { [MODWARDEN_WEB_REPAIR_HEADER]: '1' } : {}),
     },
     body: JSON.stringify(payload),
   });

@@ -10,7 +10,7 @@ Report it privately through GitHub Private Vulnerability Reporting:
 https://github.com/AlphaRomeoMike/modwarden/security/advisories/new
 (the repository's **Security** tab, then **Report a vulnerability**).
 
-ModWarden is based on [NodeWarden](https://github.com/shuaiplus/nodewarden) and is independent from Bitwarden. Please do not report ModWarden-specific issues to the official Bitwarden team. Issues in code inherited unchanged from NodeWarden can also be reported to NodeWarden directly.
+ModWarden is independent from Bitwarden. Please do not report ModWarden-specific issues to the official Bitwarden team.
 
 ## What to Include
 
