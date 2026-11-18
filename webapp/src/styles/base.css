@@ -33,6 +33,22 @@ body {
   accent-color: var(--text);
 }
 
+/* Sharp edges everywhere: wins over every border-radius and Tailwind rounded-* utility in the app. */
+*,
+*::before,
+*::after {
+  border-radius: 0 !important;
+}
+
+/* Separate rules: an unknown pseudo-element would invalidate the whole selector list above. */
+::file-selector-button {
+  border-radius: 0 !important;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 0 !important;
+}
+
 body {
   @apply relative;
   transition: background-color var(--dur-medium) var(--ease-smooth), color var(--dur-medium) var(--ease-smooth);
