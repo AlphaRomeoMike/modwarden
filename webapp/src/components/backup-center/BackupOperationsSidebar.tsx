@@ -78,7 +78,7 @@ export function BackupOperationsSidebar(props: BackupOperationsSidebarProps) {
         <summary className="backup-recommendations-summary">
           <span>
             <strong>{t('txt_backup_recommend_title')}</strong>
-            <small>{t('txt_backup_recommend_group_webdav')} · {t('txt_backup_recommend_group_s3')}</small>
+            <small>{t('txt_backup_recommend_group_webdav')}, {t('txt_backup_recommend_group_s3')}</small>
           </span>
           <span className="backup-recommendations-summary-icon" aria-hidden="true" />
         </summary>

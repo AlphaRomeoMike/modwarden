@@ -23,6 +23,32 @@ html {
   scroll-behavior: smooth;
 }
 
+html,
+body {
+  overflow-x: clip;
+}
+
+/* Native checkboxes, radios and ranges follow the black-and-white theme instead of the browser's blue. */
+:root {
+  accent-color: var(--text);
+}
+
+/* Sharp edges everywhere: wins over every border-radius and Tailwind rounded-* utility in the app. */
+*,
+*::before,
+*::after {
+  border-radius: 0 !important;
+}
+
+/* Separate rules: an unknown pseudo-element would invalidate the whole selector list above. */
+::file-selector-button {
+  border-radius: 0 !important;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 0 !important;
+}
+
 body {
   @apply relative;
   transition: background-color var(--dur-medium) var(--ease-smooth), color var(--dur-medium) var(--ease-smooth);
@@ -60,9 +86,21 @@ small {
   color: var(--text);
 }
 
-:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary) 22%, transparent);
+:root :focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 2px;
+}
+
+/* Floor 7: honour reduced motion everywhere, including the 21 keyframe animations. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* --- custom scrollbar --- */
