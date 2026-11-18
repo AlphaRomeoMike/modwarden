@@ -1,4 +1,27 @@
 :root {
+  /* Gray scale as R G B channels, denser near white and black. Stylesheets use these instead of
+     literal colours: rgb(var(--gray-96)) or rgb(var(--gray-0) / 0.06). */
+  --gray-0: 0 0 0;
+  --gray-10: 10 10 10;
+  --gray-23: 23 23 23;
+  --gray-34: 34 34 34;
+  --gray-51: 51 51 51;
+  --gray-68: 68 68 68;
+  --gray-83: 83 83 83;
+  --gray-96: 96 96 96;
+  --gray-114: 114 114 114;
+  --gray-128: 128 128 128;
+  --gray-145: 145 145 145;
+  --gray-161: 161 161 161;
+  --gray-178: 178 178 178;
+  --gray-194: 194 194 194;
+  --gray-209: 209 209 209;
+  --gray-222: 222 222 222;
+  --gray-234: 234 234 234;
+  --gray-244: 244 244 244;
+  --gray-250: 250 250 250;
+  --gray-255: 255 255 255;
+
   --bg-accent: #ffffff;
   --panel: #ffffff;
   --panel-soft: #fafafa;

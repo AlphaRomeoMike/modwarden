@@ -143,7 +143,7 @@
 :root[data-theme='dark'] .btn-primary {
   background: var(--primary);
   border-color: transparent;
-  color: #101010;
+  color: rgb(var(--gray-10));
 }
 
 :root[data-theme='dark'] .btn-danger {
@@ -547,7 +547,7 @@ h4 {
 .btn-primary {
   background: var(--primary);
   border-color: transparent;
-  color: #ffffff;
+  color: rgb(var(--gray-255));
   box-shadow: 0 8px 18px color-mix(in srgb, var(--primary) 20%, transparent);
 }
 
@@ -991,7 +991,7 @@ textarea {
 }
 
 :root[data-theme='dark'] .btn-primary {
-  color: #101010;
+  color: rgb(var(--gray-10));
 }
 
 @media (max-width: 1180px) {
@@ -1347,7 +1347,7 @@ input[type='file'].input::file-selector-button {
   box-shadow:
     inset 3px 0 0 var(--primary),
     0 0 0 1px color-mix(in srgb, var(--primary) 22%, transparent),
-    0 10px 24px rgba(0, 0, 0, 0.18);
+    0 10px 24px rgb(var(--gray-0) / 0.18);
 }
 
 :root[data-theme='dark'] .list-item.active:hover {
@@ -1431,7 +1431,7 @@ input[type='file'].input::file-selector-button {
   }
 
   .route-stage {
-    overflow-x: hidden;
+    overflow-x: clip;
   }
 
   .backup-grid {
@@ -1495,13 +1495,13 @@ input[type='file'].input::file-selector-button {
 /* CTAs: every button is the inverse of the page and sits elevated.
    The dark selectors match the specificity of the dark-theme variant rules above. */
 :root {
-  --cta-shadow: 0 1px 2px rgba(0, 0, 0, 0.24), 0 4px 12px rgba(0, 0, 0, 0.18);
-  --cta-shadow-hover: 0 2px 4px rgba(0, 0, 0, 0.26), 0 10px 22px rgba(0, 0, 0, 0.22);
+  --cta-shadow: 0 1px 2px rgb(var(--gray-0) / 0.24), 0 4px 12px rgb(var(--gray-0) / 0.18);
+  --cta-shadow-hover: 0 2px 4px rgb(var(--gray-0) / 0.26), 0 10px 22px rgb(var(--gray-0) / 0.22);
 }
 
 :root[data-theme='dark'] {
-  --cta-shadow: 0 1px 2px rgba(255, 255, 255, 0.16), 0 4px 14px rgba(255, 255, 255, 0.14);
-  --cta-shadow-hover: 0 2px 4px rgba(255, 255, 255, 0.2), 0 10px 24px rgba(255, 255, 255, 0.2);
+  --cta-shadow: 0 1px 2px rgb(var(--gray-255) / 0.16), 0 4px 14px rgb(var(--gray-255) / 0.14);
+  --cta-shadow-hover: 0 2px 4px rgb(var(--gray-255) / 0.2), 0 10px 24px rgb(var(--gray-255) / 0.2);
 }
 
 :root .btn,

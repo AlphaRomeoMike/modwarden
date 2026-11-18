@@ -70,8 +70,8 @@
 }
 
 @keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(96, 96, 96, 0.3); }
-  50% { box-shadow: 0 0 30px rgba(96, 96, 96, 0.5), 0 0 40px rgba(96, 96, 96, 0.2); }
+  0%, 100% { box-shadow: 0 0 20px rgb(var(--gray-96) / 0.3); }
+  50% { box-shadow: 0 0 30px rgb(var(--gray-96) / 0.5), 0 0 40px rgb(var(--gray-96) / 0.2); }
 }
 
 @keyframes spin {

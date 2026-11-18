@@ -23,6 +23,16 @@ html {
   scroll-behavior: smooth;
 }
 
+html,
+body {
+  overflow-x: clip;
+}
+
+/* Native checkboxes, radios and ranges follow the black-and-white theme instead of the browser's blue. */
+:root {
+  accent-color: var(--text);
+}
+
 body {
   @apply relative;
   transition: background-color var(--dur-medium) var(--ease-smooth), color var(--dur-medium) var(--ease-smooth);
@@ -60,9 +70,21 @@ small {
   color: var(--text);
 }
 
-:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary) 22%, transparent);
+:root :focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 2px;
+}
+
+/* Floor 7: honour reduced motion everywhere, including the 21 keyframe animations. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* --- custom scrollbar --- */

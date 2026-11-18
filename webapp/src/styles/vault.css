@@ -28,8 +28,6 @@
   @apply mb-2;
   font-size: var(--font-xs);
   font-weight: 700;
-  letter-spacing: var(--tracking-wider);
-  text-transform: uppercase;
   color: var(--muted);
   line-height: var(--leading-tight);
 }
@@ -57,8 +55,8 @@
 .search-input {
   @apply h-12 w-full rounded-xl border px-3.5 py-2.5 text-base text-ink outline-hidden transition;
   background: var(--panel);
-  border-color: rgba(100, 100, 100, 0.34);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.82);
+  border-color: rgb(var(--gray-96) / 0.34);
+  box-shadow: inset 0 1px 0 rgb(var(--gray-255) / 0.82);
 }
 
 .search-input-wrap {
@@ -66,9 +64,9 @@
 }
 
 .search-input:focus {
-  border-color: rgba(98, 98, 98, 0.6);
-  background-color: #fdfdfd;
-  box-shadow: 0 0 0 4px rgba(96, 96, 96, 0.10), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  border-color: rgb(var(--gray-96) / 0.6);
+  background-color: rgb(var(--gray-255));
+  box-shadow: 0 0 0 4px rgb(var(--gray-96) / 0.10), inset 0 1px 0 rgb(var(--gray-255) / 0.95);
 }
 
 .search-input-wrap .search-input {
@@ -78,21 +76,20 @@
 .search-clear-btn {
   @apply absolute right-[9px] top-1/2 inline-flex h-[22px] w-[22px] cursor-pointer items-center justify-center rounded-full border-0;
   border: none;
-  background: rgba(161, 161, 161, 0.18);
+  background: rgb(var(--gray-161) / 0.18);
   color: var(--muted);
   transform: translateY(-50%);
   transition: background-color var(--dur-fast) var(--ease-out-soft), color var(--dur-fast) var(--ease-out-soft), transform var(--dur-fast) var(--ease-out-soft);
 }
 
 .search-clear-btn:hover {
-  background: rgba(123, 123, 123, 0.18);
+  background: rgb(var(--gray-128) / 0.18);
   color: var(--brand);
   transform: translateY(-50%) scale(1.04);
 }
 
 .search-clear-btn:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(96, 96, 96, 0.16);
+  box-shadow: 0 0 0 3px rgb(var(--gray-96) / 0.16);
 }
 
 .tree-btn {
@@ -107,12 +104,12 @@
 }
 
 .tree-btn:hover {
-  background: rgba(96, 96, 96, 0.05);
+  background: rgb(var(--gray-96) / 0.05);
   color: var(--text);
 }
 
 .tree-btn.active {
-  background: rgba(96, 96, 96, 0.09);
+  background: rgb(var(--gray-96) / 0.09);
   color: var(--primary-strong);
   font-weight: 600;
 }
@@ -144,14 +141,14 @@
 }
 
 .folder-toggle-btn:hover {
-  background: rgba(96, 96, 96, 0.09);
+  background: rgb(var(--gray-96) / 0.09);
   color: var(--primary-strong);
 }
 
 .folder-delete-btn {
   @apply inline-flex h-6 w-6 shrink-0 cursor-pointer items-center justify-center rounded-md border-0 bg-transparent p-0;
   border: none;
-  color: #727272;
+  color: rgb(var(--gray-114));
   transition:
     color var(--dur-fast) var(--ease-smooth),
     background-color var(--dur-fast) var(--ease-smooth),
@@ -159,20 +156,20 @@
 }
 
 .folder-delete-btn:hover {
-  color: #3d3d3d;
-  background: #e8e8e8;
+  color: rgb(var(--gray-68));
+  background: rgb(var(--gray-234));
   transform: scale(1.06);
 }
 
 .folder-edit-btn:hover {
-  color: #4e4e4e;
-  background: #e8e8e8;
+  color: rgb(var(--gray-83));
+  background: rgb(var(--gray-234));
 }
 
 .folder-sort-btn {
   @apply inline-flex h-6 w-6 shrink-0 cursor-pointer items-center justify-center rounded-md border-0 bg-transparent p-0;
   border: none;
-  color: #727272;
+  color: rgb(var(--gray-114));
   transition:
     color var(--dur-fast) var(--ease-smooth),
     background-color var(--dur-fast) var(--ease-smooth),
@@ -181,13 +178,13 @@
 
 .folder-sort-btn:hover {
   color: var(--primary-hover);
-  background: #e8e8e8;
+  background: rgb(var(--gray-234));
   transform: scale(1.06);
 }
 
 .folder-sort-btn.active {
-  color: #575757;
-  background: #f0f0f0;
+  color: rgb(var(--gray-83));
+  background: rgb(var(--gray-244));
 }
 
 .list-col {
@@ -213,7 +210,7 @@
 
 .duplicate-mode-select {
   @apply h-8 min-w-[150px] rounded-full py-0 pl-3 pr-6 text-xs;
-  border-color: rgba(100, 100, 100, 0.26);
+  border-color: rgb(var(--gray-96) / 0.26);
   box-shadow: none;
   line-height: 32px;
   background-position:
@@ -300,9 +297,9 @@ select.input.duplicate-mode-toolbar-select {
 .mobile-vault-filter-trigger {
   @apply flex h-[34px] w-full min-w-0 cursor-pointer items-center gap-1.5 rounded-[10px] border px-2.5 py-0 text-left text-[13px] font-semibold;
   background: var(--panel);
-  border-color: rgba(100, 100, 100, 0.28);
+  border-color: rgb(var(--gray-96) / 0.28);
   color: var(--muted-strong);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.74);
+  box-shadow: inset 0 1px 0 rgb(var(--gray-255) / 0.74);
   transition:
     border-color var(--dur-fast) var(--ease-smooth),
     background-color var(--dur-fast) var(--ease-smooth),
@@ -312,14 +309,13 @@ select.input.duplicate-mode-toolbar-select {
 
 .mobile-vault-filter-trigger:hover,
 .mobile-vault-filter-trigger.active {
-  border-color: rgba(98, 98, 98, 0.46);
-  background: #fbfbfb;
+  border-color: rgb(var(--gray-96) / 0.46);
+  background: rgb(var(--gray-250));
   color: var(--primary-strong);
 }
 
 .mobile-vault-filter-trigger:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(96, 96, 96, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.86);
+  box-shadow: 0 0 0 3px rgb(var(--gray-96) / 0.14), inset 0 1px 0 rgb(var(--gray-255) / 0.86);
 }
 
 .mobile-vault-filter-trigger-icon,
@@ -386,9 +382,9 @@ select.input.duplicate-mode-toolbar-select {
 }
 
 .sort-trigger.active {
-  background: #f0f0f0;
-  border-color: #c0c0c0;
-  color: #575757;
+  background: rgb(var(--gray-244));
+  border-color: rgb(var(--gray-194));
+  color: rgb(var(--gray-83));
 }
 
 .sort-menu {
@@ -404,7 +400,7 @@ select.input.duplicate-mode-toolbar-select {
 .sort-menu-item {
   @apply flex w-full cursor-pointer items-center justify-between gap-2.5 rounded-[10px] border-0 bg-transparent px-2.5 py-[9px] text-left text-[13px];
   border: none;
-  color: #171717;
+  color: rgb(var(--gray-23));
   transition:
     background-color var(--dur-fast) var(--ease-smooth),
     color var(--dur-fast) var(--ease-smooth),
@@ -412,13 +408,13 @@ select.input.duplicate-mode-toolbar-select {
 }
 
 .sort-menu-item:hover {
-  background: #f7f7f7;
+  background: rgb(var(--gray-244));
   transform: translateX(2px);
 }
 
 .sort-menu-item.active {
   @apply font-bold;
-  background: rgba(96, 96, 96, 0.1);
+  background: rgb(var(--gray-96) / 0.1);
   color: var(--primary-strong);
 }
 
@@ -459,7 +455,7 @@ select.input.duplicate-mode-toolbar-select {
 
 .list-item {
   @apply relative mb-2 flex min-h-[66px] w-full cursor-pointer items-center gap-2.5 overflow-hidden rounded-xl border px-3 py-2.5 transition;
-  background: rgba(251, 251, 251, 0.9);
+  background: rgb(var(--gray-250) / 0.9);
   border-color: var(--line);
   contain: paint;
   overflow-anchor: none;
@@ -474,8 +470,8 @@ select.input.duplicate-mode-toolbar-select {
   content: '';
   @apply absolute inset-0 opacity-0;
   background:
-    linear-gradient(90deg, rgba(98, 98, 98, 0.06), transparent 24%, transparent 76%, rgba(138, 138, 138, 0.05)),
-    radial-gradient(circle at 18px 50%, rgba(255, 255, 255, 0.28), transparent 44%);
+    linear-gradient(90deg, rgb(var(--gray-96) / 0.06), transparent 24%, transparent 76%, rgb(var(--gray-145) / 0.05)),
+    radial-gradient(circle at 18px 50%, rgb(var(--gray-255) / 0.28), transparent 44%);
   transition:
     opacity var(--dur-fast) var(--ease-smooth),
     transform 320ms var(--ease-out-soft);
@@ -545,9 +541,9 @@ select.input.duplicate-mode-toolbar-select {
 }
 
 .list-item:hover {
-  background: #fdfdfd;
-  border-color: rgba(96, 96, 96, 0.18);
-  box-shadow: 0 10px 22px rgba(23, 23, 23, 0.06), 0 0 0 1px rgba(96, 96, 96, 0.04);
+  background: rgb(var(--gray-255));
+  border-color: rgb(var(--gray-96) / 0.18);
+  box-shadow: 0 10px 22px rgb(var(--gray-23) / 0.06), 0 0 0 1px rgb(var(--gray-96) / 0.04);
 }
 
 .list-item.duplicate-group-item:hover {
@@ -561,9 +557,9 @@ select.input.duplicate-mode-toolbar-select {
 }
 
 .list-item.active {
-  background: rgba(96, 96, 96, 0.1);
-  border-color: rgba(98, 98, 98, 0.26);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.42);
+  background: rgb(var(--gray-96) / 0.1);
+  border-color: rgb(var(--gray-96) / 0.26);
+  box-shadow: inset 0 1px 0 rgb(var(--gray-255) / 0.42);
 }
 
 .list-item.duplicate-group-item.active {
@@ -603,10 +599,10 @@ select.input.duplicate-mode-toolbar-select {
 .card-brand-icon {
   @apply inline-grid h-6 w-9 shrink-0 place-items-center rounded-sm border text-[7px] font-black uppercase leading-none;
   letter-spacing: 0;
-  color: #3a3a3a;
-  background: linear-gradient(180deg, #ffffff 0%, #f7f7f7 100%);
-  border-color: rgba(122, 122, 122, 0.34);
-  box-shadow: 0 1px 2px rgba(23, 23, 23, 0.08);
+  color: rgb(var(--gray-51));
+  background: linear-gradient(180deg, rgb(var(--gray-255)) 0%, rgb(var(--gray-244)) 100%);
+  border-color: rgb(var(--gray-128) / 0.34);
+  box-shadow: 0 1px 2px rgb(var(--gray-23) / 0.08);
 }
 
 .card-brand-icon span {
@@ -623,56 +619,56 @@ select.input.duplicate-mode-toolbar-select {
 
 .card-brand-icon:has(img) {
   color: inherit;
-  background: #ffffff;
+  background: rgb(var(--gray-255));
 }
 
 .card-brand-visa {
-  color: #4a4a4a;
+  color: rgb(var(--gray-68));
 }
 
 .card-brand-mastercard {
-  color: #181818;
+  color: rgb(var(--gray-23));
   background:
-    radial-gradient(circle at 38% 50%, rgba(52, 52, 52, 0.88) 0 24%, transparent 25%),
-    radial-gradient(circle at 62% 50%, rgba(167, 167, 167, 0.88) 0 24%, transparent 25%),
-    #ffffff;
+    radial-gradient(circle at 38% 50%, rgb(var(--gray-51) / 0.88) 0 24%, transparent 25%),
+    radial-gradient(circle at 62% 50%, rgb(var(--gray-161) / 0.88) 0 24%, transparent 25%),
+    rgb(var(--gray-255));
 }
 
 .card-brand-american-express {
-  color: #ffffff;
-  background: #6c6c6c;
-  border-color: rgba(108, 108, 108, 0.45);
+  color: rgb(var(--gray-255));
+  background: rgb(var(--gray-114));
+  border-color: rgb(var(--gray-114) / 0.45);
 }
 
 .card-brand-discover {
-  color: #252525;
+  color: rgb(var(--gray-34));
   background:
-    radial-gradient(circle at 72% 50%, rgba(147, 147, 147, 0.9) 0 26%, transparent 27%),
-    #ffffff;
+    radial-gradient(circle at 72% 50%, rgb(var(--gray-145) / 0.9) 0 26%, transparent 27%),
+    rgb(var(--gray-255));
 }
 
 .card-brand-diners-club {
-  color: #535353;
+  color: rgb(var(--gray-83));
 }
 
 .card-brand-jcb {
-  color: #606060;
+  color: rgb(var(--gray-96));
 }
 
 .card-brand-maestro {
-  color: #414141;
+  color: rgb(var(--gray-68));
   background:
-    radial-gradient(circle at 38% 50%, rgba(73, 73, 73, 0.86) 0 24%, transparent 25%),
-    radial-gradient(circle at 62% 50%, rgba(73, 73, 73, 0.82) 0 24%, transparent 25%),
-    #ffffff;
+    radial-gradient(circle at 38% 50%, rgb(var(--gray-68) / 0.86) 0 24%, transparent 25%),
+    radial-gradient(circle at 62% 50%, rgb(var(--gray-68) / 0.82) 0 24%, transparent 25%),
+    rgb(var(--gray-255));
 }
 
 .card-brand-unionpay {
-  color: #606060;
+  color: rgb(var(--gray-96));
 }
 
 .card-brand-rupay {
-  color: #3a3a3a;
+  color: rgb(var(--gray-51));
 }
 
 .card-brand-select-row {
@@ -725,7 +721,7 @@ select.input.duplicate-mode-toolbar-select {
 
 .list-icon-fallback {
   @apply grid place-items-center;
-  color: #727272;
+  color: rgb(var(--gray-114));
   transition:
     color var(--dur-fast) var(--ease-smooth),
     opacity var(--dur-fast) var(--ease-smooth),
@@ -758,18 +754,18 @@ select.input.duplicate-mode-toolbar-select {
 
 .list-badge {
   @apply inline-flex shrink-0 items-center justify-center rounded-full px-1.5 py-0.5 text-[11px] font-bold leading-none;
-  color: #535353;
-  background: #ededed;
+  color: rgb(var(--gray-83));
+  background: rgb(var(--gray-234));
 }
 
 .list-badge.danger {
-  color: #ffffff;
+  color: rgb(var(--gray-255));
   background: var(--danger);
 }
 
 .list-sub {
   @apply mt-0.5 block overflow-hidden text-ellipsis whitespace-nowrap text-[13px];
-  color: #6d6d6d;
+  color: rgb(var(--gray-114));
   transition: color var(--dur-fast) var(--ease-smooth), transform 220ms var(--ease-out-soft), opacity var(--dur-fast) var(--ease-smooth);
 }
 
@@ -866,7 +862,7 @@ select.input.duplicate-mode-toolbar-select {
 
 .kv-line {
   @apply flex items-center justify-between gap-2.5 py-2.5;
-  border-bottom: 1px solid rgba(171, 171, 171, 0.22);
+  border-bottom: 1px solid rgb(var(--gray-178) / 0.22);
 }
 
 .kv-line:last-child {
@@ -874,7 +870,7 @@ select.input.duplicate-mode-toolbar-select {
 }
 
 .kv-line > span {
-  color: #727272;
+  color: rgb(var(--gray-114));
 }
 
 .kv-row {
@@ -882,7 +878,7 @@ select.input.duplicate-mode-toolbar-select {
   /* Floor the value column so the auto-sized actions column wraps its
      buttons instead of collapsing the value to 0 width. */
   grid-template-columns: minmax(0px, 80px) minmax(min(35%, 140px), 1fr) auto;
-  border-bottom: 1px solid rgba(171, 171, 171, 0.22);
+  border-bottom: 1px solid rgb(var(--gray-178) / 0.22);
 }
 
 .kv-row:last-child {
@@ -946,7 +942,7 @@ select.input.duplicate-mode-toolbar-select {
 
 .kv-label {
   @apply min-w-0 overflow-hidden text-ellipsis whitespace-nowrap;
-  color: #727272;
+  color: rgb(var(--gray-114));
 }
 
 .kv-main {
@@ -979,7 +975,7 @@ select.input.duplicate-mode-toolbar-select {
 }
 
 .totp-ring-track {
-  stroke: #e1e1e1;
+  stroke: rgb(var(--gray-222));
 }
 
 .totp-ring-progress {
@@ -990,21 +986,21 @@ select.input.duplicate-mode-toolbar-select {
 
 .totp-timer-value {
   @apply absolute inset-0 grid place-items-center text-[11px] font-bold;
-  color: #171717;
+  color: rgb(var(--gray-23));
 }
 
 .dialog-mask.totp-scan-mask {
   @apply grid place-items-center p-5;
-  background: rgba(23, 23, 23, 0.78);
+  background: rgb(var(--gray-23) / 0.78);
 }
 
 .dialog-card.totp-scan-dialog {
   @apply flex w-full max-w-[560px] flex-col overflow-hidden rounded-3xl border-0 p-0 text-left;
   height: min(720px, calc(100dvh - 48px));
   max-height: calc(100dvh - 48px);
-  background: #171717;
-  color: #fafafa;
-  box-shadow: 0 28px 80px rgba(6, 6, 6, 0.45);
+  background: rgb(var(--gray-23));
+  color: rgb(var(--gray-250));
+  box-shadow: 0 28px 80px rgb(var(--gray-10) / 0.45);
 }
 
 .totp-scan-head {
@@ -1014,7 +1010,7 @@ select.input.duplicate-mode-toolbar-select {
 
 .totp-scan-head .dialog-title {
   @apply m-0 min-w-0 overflow-hidden text-ellipsis whitespace-nowrap text-xl;
-  color: #fafafa;
+  color: rgb(var(--gray-250));
 }
 
 .totp-scan-close {
@@ -1022,13 +1018,13 @@ select.input.duplicate-mode-toolbar-select {
 }
 
 .totp-scan-close:hover {
-  background: rgba(255, 255, 255, 0.18);
+  background: rgb(var(--gray-255) / 0.18);
   transform: scale(1.04);
 }
 
 .totp-scan-frame {
   @apply relative min-h-0 flex-1 overflow-hidden;
-  background: #171717;
+  background: rgb(var(--gray-23));
 }
 
 .totp-scan-video {
@@ -1038,19 +1034,19 @@ select.input.duplicate-mode-toolbar-select {
 .totp-scan-corners {
   @apply pointer-events-none absolute rounded-[18px];
   inset: max(34px, 10vmin);
-  border: 2px solid rgba(255, 255, 255, 0.88);
-  box-shadow: 0 0 0 999px rgba(23, 23, 23, 0.28);
+  border: 2px solid rgb(var(--gray-255) / 0.88);
+  box-shadow: 0 0 0 999px rgb(var(--gray-23) / 0.28);
 }
 
 .totp-scan-footer {
   @apply shrink-0 px-4 py-3;
   padding-bottom: calc(12px + env(safe-area-inset-bottom));
-  background: linear-gradient(180deg, rgba(23, 23, 23, 0.74), #171717);
+  background: linear-gradient(180deg, rgb(var(--gray-23) / 0.74), rgb(var(--gray-23)));
 }
 
 .totp-scan-status {
   @apply mb-3 min-h-6 text-center text-sm;
-  color: rgba(250, 250, 250, 0.86);
+  color: rgb(var(--gray-250) / 0.86);
 }
 
 .totp-scan-actions {
@@ -1088,7 +1084,7 @@ select.input.duplicate-mode-toolbar-select {
 
 .detail-folder-line {
   @apply mt-1 flex min-w-0 items-center gap-1.5 text-xs font-semibold;
-  color: #6f6f6f;
+  color: rgb(var(--gray-114));
 }
 
 .detail-folder-line span {
@@ -1107,8 +1103,8 @@ select.input.duplicate-mode-toolbar-select {
 .totp-code-row {
   @apply grid w-full min-w-0 max-w-none items-center gap-2.5 rounded-xl border p-3;
   grid-template-columns: minmax(0, 1fr) auto;
-  border-color: #e7e7e7;
-  background: #fafafa;
+  border-color: rgb(var(--gray-234));
+  background: rgb(var(--gray-250));
   transition:
     transform 220ms var(--ease-out-soft),
     box-shadow var(--dur-fast) var(--ease-out-soft),
@@ -1141,12 +1137,12 @@ select.input.duplicate-mode-toolbar-select {
 
 .totp-code-name {
   @apply text-[15px] font-bold;
-  color: #171717;
+  color: rgb(var(--gray-23));
 }
 
 .totp-code-username {
   @apply mt-0.5 text-[13px];
-  color: #727272;
+  color: rgb(var(--gray-114));
 }
 
 .totp-copy-btn {
@@ -1183,7 +1179,7 @@ select.input.duplicate-mode-toolbar-select {
 
 .attachment-row {
   @apply flex items-center justify-between gap-2.5 py-2.5;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid rgb(var(--gray-244));
 }
 
 .attachment-row:last-child {
@@ -1200,7 +1196,7 @@ select.input.duplicate-mode-toolbar-select {
 
 .attachment-text span {
   @apply text-xs;
-  color: #727272;
+  color: rgb(var(--gray-114));
 }
 
 .attachment-row.is-removed {
@@ -1213,7 +1209,7 @@ select.input.duplicate-mode-toolbar-select {
 
 .attachment-queue-title {
   @apply px-0 pb-0.5 pt-2 text-xs font-bold;
-  color: #727272;
+  color: rgb(var(--gray-114));
 }
 
 .boolean-text {
@@ -1222,7 +1218,7 @@ select.input.duplicate-mode-toolbar-select {
 
 .custom-field-card {
   @apply grid gap-2 py-2.5;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid rgb(var(--gray-244));
 }
 
 .custom-field-card:last-child {
@@ -1232,7 +1228,7 @@ select.input.duplicate-mode-toolbar-select {
 
 .custom-field-label {
   @apply block overflow-hidden text-ellipsis whitespace-nowrap text-xs font-bold leading-[1.2];
-  color: #727272;
+  color: rgb(var(--gray-114));
 }
 
 .custom-field-body {
@@ -1263,7 +1259,7 @@ select.input.duplicate-mode-toolbar-select {
 
 .custom-field-check span {
   @apply text-sm font-semibold;
-  color: #3f3f3f;
+  color: rgb(var(--gray-68));
 }
 
 .custom-field-remove {
@@ -1274,12 +1270,12 @@ select.input.duplicate-mode-toolbar-select {
   @apply min-h-12 whitespace-pre-wrap;
   overflow-wrap: anywhere;
   word-break: break-word;
-  color: #3f3f3f;
+  color: rgb(var(--gray-68));
 }
 
 .empty {
   @apply grid min-h-[120px] place-items-center;
-  color: #6f6f6f;
+  color: rgb(var(--gray-114));
 }
 
 .vault-error-state {
