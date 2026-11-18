@@ -21,6 +21,34 @@ Release note writing rules:
 7. The English and Chinese versions should match in content and ordering, not be two different summaries.
 -->
 
+# v1.0.2 - Sharp Edges, Visible Keyboard Focus, and Design Polish
+
+### Added
+
+1. **Sharp-edged interface.** Cards, panels, dialogs, menus, buttons, inputs, badges, toggles and focus outlines now all have square corners, giving the black-and-white Web Vault a crisper, more deliberate look. The ModWarden logo keeps its own shape. Commit: [290afa2](https://github.com/AlphaRomeoMike/modwarden/commit/290afa2b5a1be576158bca0bb8fada2f77ad094b).
+
+### Improved
+
+1. **Design polish from a Hallmark review.** Every gray in the Web Vault now comes from one shared set of tokens, sidebar headings and the "or" divider use normal sentence case instead of capitals, animations respect the system's reduce-motion setting, and checkboxes follow the black-and-white theme instead of the browser's blue. Commit: [bbf0a53](https://github.com/AlphaRomeoMike/modwarden/commit/bbf0a531cd199048df2c5a4e05d75b8371291433).
+
+### Fixed
+
+1. **Keyboard focus is visible on every control.** Buttons showed no focus ring because their shadow covered it, so keyboard users could lose track of where they were. Every control now shows a clear outline when focused from the keyboard. Commit: [bbf0a53](https://github.com/AlphaRomeoMike/modwarden/commit/bbf0a531cd199048df2c5a4e05d75b8371291433).
+
+---
+
+### 新增
+
+1. **直角界面。** 卡片、面板、对话框、菜单、按钮、输入框、徽章、开关和焦点轮廓现在全部采用直角，让黑白网页密码库看起来更利落、更有设计感。ModWarden 标志保留原有形状。提交：[290afa2](https://github.com/AlphaRomeoMike/modwarden/commit/290afa2b5a1be576158bca0bb8fada2f77ad094b)。
+
+### 改进
+
+1. **基于 Hallmark 审查的设计打磨。** 网页密码库中的所有灰色现在都来自同一组设计令牌，侧边栏标题和"或"分隔符改用正常的首字母大写而不是全大写，动画遵循系统的"减少动态效果"设置，复选框也跟随黑白主题，而不是浏览器默认的蓝色。提交：[bbf0a53](https://github.com/AlphaRomeoMike/modwarden/commit/bbf0a531cd199048df2c5a4e05d75b8371291433)。
+
+### 修复
+
+1. **所有控件的键盘焦点都清晰可见。** 此前按钮的阴影遮住了焦点环，使用键盘的用户可能找不到当前位置。现在通过键盘聚焦时，每个控件都会显示清晰的轮廓。提交：[bbf0a53](https://github.com/AlphaRomeoMike/modwarden/commit/bbf0a531cd199048df2c5a4e05d75b8371291433)。
+
 # v1.0.1 - Vault Database Moved to Asia-Pacific
 
 ### Improved
