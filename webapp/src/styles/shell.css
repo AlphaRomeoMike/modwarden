@@ -25,8 +25,8 @@
   width: clamp(168px, 17vw, 224px);
   aspect-ratio: 611 / 80;
   background: rgb(var(--gray-96));
-  mask: url('/nodewarden-wordmark.svg') center / contain no-repeat;
-  -webkit-mask: url('/nodewarden-wordmark.svg') center / contain no-repeat;
+  mask: url('/modwarden-wordmark.svg') center / contain no-repeat;
+  -webkit-mask: url('/modwarden-wordmark.svg') center / contain no-repeat;
 }
 
 .mobile-page-title {

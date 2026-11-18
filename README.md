@@ -1,171 +1,142 @@
 <p align="center">
-  <img src="./NodeWarden.svg" alt="NodeWarden Logo" />
+  <img src="./ModWarden.svg" alt="ModWarden logo" width="120" />
 </p>
 
+<h1 align="center">ModWarden</h1>
+
 <p align="center">
-  Bitwarden-compatible server running on Cloudflare Workers
+  A Bitwarden-compatible password manager server that runs on Cloudflare Workers.
 </p>
 
 <p align="center">
   <a href="https://workers.cloudflare.com/"><img src="https://img.shields.io/badge/Powered%20by-Cloudflare-F38020?logo=cloudflare&logoColor=white" alt="Powered by Cloudflare" /></a>
   <a href="./LICENSE"><img src="https://img.shields.io/badge/License-LGPL--3.0-2ea44f" alt="License: LGPL-3.0" /></a>
-  <a href="https://github.com/shuaiplus/NodeWarden/releases/latest"><img src="https://img.shields.io/github/v/release/shuaiplus/NodeWarden?display_name=tag" alt="Latest Release" /></a>
-
-</p>
-
-<p align="center">
-  <a href="https://t.me/NodeWarden_News">Telegram Channel</a> |
-  <a href="https://t.me/NodeWarden_Official">Telegram Group</a>
+  <a href="https://github.com/AlphaRomeoMike/modwarden/tags"><img src="https://img.shields.io/github/v/tag/AlphaRomeoMike/modwarden?label=release" alt="Latest release" /></a>
 </p>
 
 <p align="center">
   <a href="./README_ZH.md">中文</a> |
+  <a href="./RELEASE_NOTES.md">Release notes</a> |
   <a href="./CONTRIBUTING.md">Contributing</a> |
-  <a href="https://nodewarden.app">Official wiki</a>
+  <a href="./SECURITY.md">Security</a>
 </p>
 
-> **Disclaimer**  
-> This project is for learning and discussion purposes only. Please back up your vault regularly.  
-> This project is not affiliated with Bitwarden. Please do not report NodeWarden issues to the official Bitwarden team.
+> **Disclaimer**
+> ModWarden is not affiliated with Bitwarden. Please don't report ModWarden issues to the Bitwarden team.
+> Back up your vault regularly.
 
 ---
 
-## Feature comparison with the official Bitwarden server
+## Features
 
-| Feature | Bitwarden Free | NodeWarden | Notes |
+| Feature | Bitwarden Free | ModWarden | Notes |
 |---|---|---|---|
-| Web vault | ✅ | ✅ | **Original Web Vault UI** |
+| Web vault | ✅ | ✅ | Black-and-white Web Vault with keyboard-visible focus |
 | TOTP | ❌ | ✅ | Includes `steam://` support |
 | **PWA / offline** | ❌ | ✅ | **Installable, offline** |
-| **Passkey login** | ✅ | ✅ | **passwordless auth** |
+| **Passkey login** | ✅ | ✅ | **Passwordless auth** |
 | API keys | ✅ | ✅ | CLI keys; create and rotate |
 | Login 2FA | ✅ | ✅ | TOTP, YubiKey, Passkey |
 | 2FA recovery codes | ✅ | ✅ | One-time 2FA disable codes |
 | Real-time push sync | ✅ | ✅ | All device sync |
-| Attachments / Send | ✅ | ✅ | Cloudflare R2 or KV |
+| Attachments / Send | ✅ | ✅ | Cloudflare KV or R2 |
 | Import / export | ✅ | ✅ | Bitwarden JSON / CSV / **ZIP** |
 | **Cloud backup center** | ❌ | ✅ | **Scheduled WebDAV / S3 incrementals** |
 | Device management | ✅ | ✅ | **Remove devices; trust controls** |
 | Login requests | ✅ | ✅ | **Cross-device login approval/unlock** |
 | **Multi-user** | ✅ | ✅ | Invite-code registration |
 | Domain rules | ✅ | ✅ | Equivalent domains, global exclusions |
-| Fill-assist | ✅ | ✅ | `POST /fill-assist`|
+| Fill-assist | ✅ | ✅ | `POST /fill-assist` |
 | Organizations / collections / roles | ✅ | ❌ | Not implemented |
 | SSO / SCIM / directory | ✅ | ❌ | Not implemented |
 
 ---
 
-## Tested clients
+## Use it with Bitwarden apps
 
-- ✅ Windows desktop
-- ✅ Mobile app
-- ✅ Browser extension
-- ✅ Linux desktop
-- ⚠️ macOS desktop not fully verified yet
+In the Bitwarden mobile or desktop app or the browser extension, choose **Self-hosted** on the login screen and enter your Worker's address as the server URL, for example `https://modwarden.<your-subdomain>.workers.dev`.
+
+The first account registered becomes the owner. After that, new accounts need an invite code from the **Admin Panel**.
 
 ---
 
-## Visual quick deploy
+## Deploy
 
-1. Fork the NodeWarden repository to your GitHub account
-2. Open [Cloudflare Workers & Pages](https://dash.cloudflare.com/?to=/:account/workers-and-pages/create)
-3. Choose **Continue with GitHub** and select your fork
-4. Set **build command** to `npm run build` and **deploy command** to `npm run deploy`
-   - For KV mode, change the deploy command to `npm run deploy:kv`
-5. After deployment finishes, open the generated Workers URL
+Production deploys run in GitHub Actions ([`deploy.yml`](./.github/workflows/deploy.yml)) whenever a `v*` tag is pushed. They use KV storage mode ([`wrangler.kv.toml`](./wrangler.kv.toml)), so no R2 bucket or card on file is needed.
 
-- The default Workers hostname may be unreachable on some networks. To use a custom domain, add it in [Workers settings](https://dash.cloudflare.com/?to=/:account/workers/services/view/nodewarden/production/settings).
+### One-time setup
 
-- If the site reports a missing `JWT_SECRET`, add it as a **Secret** in Workers settings. In production use a random string of at least 32 characters; do not use temporary or example values.
+1. **Cloudflare:** open **Workers & Pages** once so the account gets a `workers.dev` subdomain.
+2. **Database:** create a D1 database and put its ID in `wrangler.kv.toml` (`database_id`). The ID in this repository is ModWarden's production database; a fork must use its own.
+   ```bash
+   npx wrangler d1 create modwarden-db-apac --location apac
+   ```
+3. **API token:** in Cloudflare, **My Profile → API Tokens → Create Custom Token**, limited to your account:
+
+   | Type | Permission | Access |
+   |---|---|---|
+   | Account | Workers Scripts | Edit |
+   | Account | Workers KV Storage | Edit |
+   | Account | D1 | Edit |
+   | Account | Account Settings | Read |
+   | User | Memberships | Read |
+   | User | User Details | Read |
+
+4. **GitHub secret:** save the token in the repository's `production` environment:
+   ```bash
+   gh secret set CLOUDFLARE_API_TOKEN --env production
+   ```
+
+### Releasing
+
+1. Merge changes into `main` through a pull request. `main` is protected and CI must pass.
+2. In a release pull request, bump the version in `package.json`, `package-lock.json` and `shared/app-version.ts`, and add an entry to [`RELEASE_NOTES.md`](./RELEASE_NOTES.md).
+3. Tag the merged commit and push only that tag:
+   ```bash
+   git tag -a v1.2.3 -m "ModWarden v1.2.3"
+   git push origin refs/tags/v1.2.3
+   ```
+
+The workflow builds the Web Vault, deploys the Worker, and creates the `JWT_SECRET` on the first deploy. To redeploy an existing version, run `gh workflow run deploy.yml --ref v1.2.3`.
 
 - To hide the Web Vault, add a text variable named `HIDE_WEB_VAULT` with the value `1` under **Workers settings → Variables and Secrets**. While enabled, server-hosted frontend pages and static assets return `404 Not Found`, while the login, sync, attachment, icon, notification, and other server endpoints used by Bitwarden clients remain available; an already installed or cached PWA can continue using its local frontend. Delete the variable (or change it to anything other than `1`) to restore the server-hosted Web Vault.
 
-- In this flow you hand code to Cloudflare to build and deploy. `wrangler.toml` or `wrangler.kv.toml` in the repo defines binding names; the Worker initializes the D1 schema on first request—no manual SQL upload.
-
-
-> [!TIP] 
-> Default R2 vs optional KV:
+> [!TIP]
+> KV (default here) vs R2 ([`wrangler.toml`](./wrangler.toml), `npm run deploy`):
 >   | Storage | Card required | Max single attachment / Send file | Free tier |
 >   |---|---|---|---|
->   | R2 | Yes | 100 MB (soft limit, adjustable) | 10 GB |
 >   | KV | No | 25 MiB (Cloudflare limit) | 1 GB |
-
-
-## FAQ
-
-- **After forking the repository, why can't I see my repository when connecting GitHub to Cloudflare, or why do I get a 404 after selecting it?**  
-  This is usually related to how the GitHub fork is identified or how Cloudflare handles repository authorization and synchronization. If the fork keeps a repository name, description, or other information that is very similar to the upstream project, it may be more likely to trigger related restrictions or issues. It is recommended to rename the repository to something different from the upstream project when creating the fork, and change the repository description as well. For example, you can rename it to `2233warden`. If you have already created the fork, you can rename the repository and update its description in the GitHub repository settings, then try connecting it to Cloudflare again.
-
-- **I deleted my deployment and redeployed it. Why does registration require an invite code again?**  
-  Deleting the Worker or redeploying it does not automatically delete the persistent data that was already created. The users, invite codes, and related configuration stored in the D1 database and KV namespace are still there, so the newly deployed Worker continues to read the existing data and enforce the invite-code requirement.  
-  If you want to start completely from scratch, you need to delete the corresponding **D1 database and KV namespace** as well.
-
-- **I configured `JWT_SECRET`, but the page still says it is missing. Why?**  
-  Make sure `JWT_SECRET` is configured under **Workers → Settings → Variables and Secrets**, specifically as a **Runtime variable or Secret**, rather than under **Build variables**.  
-  Build-time variables are only available during the build process. They are not available to the Worker at runtime, so the build may succeed while the application still reports that `JWT_SECRET` is missing.
-
-- **Why does `JWT_SECRET` seem to disappear after an upgrade or redeployment?**  
-  It is recommended to store `JWT_SECRET` as a **Secret** rather than as a plain-text variable. `JWT_SECRET` is a sensitive runtime credential and should not be committed to the repository.  
-  If your deployment process recreates or overwrites the Worker variable configuration, ordinary variables may be affected. Secrets are more appropriate for sensitive configuration that needs to remain available across multiple deployments. If the application still reports that `JWT_SECRET` is missing after a redeployment, check **Variables and Secrets** for the current Worker and make sure the Secret is still configured.
+>   | R2 | Yes | 100 MB (soft limit, adjustable) | 10 GB |
 
 ---
 
-## How to update
+## Local development
 
-- Manual: open your fork on GitHub; when the sync banner appears, click **Sync fork** → **Update branch**
-
-
-
-
-## CLI deploy
-
-```powershell
-git clone https://github.com/shuaiplus/NodeWarden.git
-cd NodeWarden
-
+```bash
 npm install
-npx wrangler login
-
-# Default: R2 mode
-npm run deploy
-
-# Optional: KV mode
-npm run deploy:kv
-
-# Local development
-npm run dev
-npm run dev:kv
+npm run dev:kv     # Worker with local D1 and KV at http://localhost:8787 (needs JWT_SECRET in .dev.vars)
+npm run dev:demo   # Web Vault with demo data and no backend
+npm test           # translations and all test suites
 ```
 
 ---
 
+## FAQ
+
+- **I deleted my deployment and redeployed it. Why does registration require an invite code again?**
+  Deleting or redeploying the Worker doesn't delete its data. The users, invite codes and settings in the D1 database and KV namespace are still there, so the new deployment keeps enforcing invite codes. To start from scratch, delete the **D1 database and KV namespace** as well.
+
+- **The site says `JWT_SECRET` is missing. Why?**
+  `JWT_SECRET` must be a **Secret** (a runtime value) under **Workers → Settings → Variables and Secrets**, not a build variable, which the Worker can't read at runtime. The deploy workflow creates it on the first deploy; if it was removed, the next deploy creates a new one, which signs everyone out.
+
+---
 
 ## License
 
-LGPL-3.0 License
-
----
+[LGPL-3.0](./LICENSE)
 
 ## Credits
 
-- [Bitwarden](https://bitwarden.com/) - Original design and clients
-- [Vaultwarden](https://github.com/dani-garcia/vaultwarden) - Server implementation reference
-- [Cloudflare Workers](https://workers.cloudflare.com/) - Serverless platform
-
----
-
-## Contributors
-
-<a href="https://github.com/shuaiplus/nodewarden/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=shuaiplus/nodewarden" alt="NodeWarden contributors" />
-</a>
-
-## Star History
-
-<a href="https://www.star-history.com/?repos=shuaiplus%2FNodeWarden&type=timeline&legend=top-left">
- <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=shuaiplus/NodeWarden&type=timeline&theme=dark&legend=top-left&sealed_token=ck0AMqR8EFMjJ6tMbnGDHT5QwMpO85IUuN7i8e82zRRNPtjoLsAAFwVzxmSZwaid97wLUwy56EEiVE9M-OY0cf16bQKBrU9GaauFoOFXGq-vMqcOyk0tIc4b3o1ZGfDw9IH8o6NUxC125TJkjKSLn9fxhFUUeNr1f1El0UcAUcjsMPl_LX80qQrlvQqp" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=shuaiplus/NodeWarden&type=timeline&legend=top-left&sealed_token=ck0AMqR8EFMjJ6tMbnGDHT5QwMpO85IUuN7i8e82zRRNPtjoLsAAFwVzxmSZwaid97wLUwy56EEiVE9M-OY0cf16bQKBrU9GaauFoOFXGq-vMqcOyk0tIc4b3o1ZGfDw9IH8o6NUxC125TJkjKSLn9fxhFUUeNr1f1El0UcAUcjsMPl_LX80qQrlvQqp" />
-   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=shuaiplus/NodeWarden&type=timeline&legend=top-left&sealed_token=ck0AMqR8EFMjJ6tMbnGDHT5QwMpO85IUuN7i8e82zRRNPtjoLsAAFwVzxmSZwaid97wLUwy56EEiVE9M-OY0cf16bQKBrU9GaauFoOFXGq-vMqcOyk0tIc4b3o1ZGfDw9IH8o6NUxC125TJkjKSLn9fxhFUUeNr1f1El0UcAUcjsMPl_LX80qQrlvQqp" />
- </picture>
-</a>
+- [Bitwarden](https://bitwarden.com/) - original design and clients
+- [Vaultwarden](https://github.com/dani-garcia/vaultwarden) - server implementation reference
+- [Cloudflare Workers](https://workers.cloudflare.com/) - serverless platform

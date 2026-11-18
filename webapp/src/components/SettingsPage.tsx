@@ -99,7 +99,7 @@ function buildOtpUri(email: string, secret: string): string {
 
 function clearLegacyTotpSetupSecrets(): void {
   if (typeof window === 'undefined') return;
-  const prefix = 'nodewarden.totp.secret.';
+  const prefix = 'modwarden.totp.secret.';
   const keys: string[] = [];
   for (let index = 0; index < window.localStorage.length; index += 1) {
     const key = window.localStorage.key(index);

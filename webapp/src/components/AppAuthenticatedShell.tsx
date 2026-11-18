@@ -28,7 +28,7 @@ interface AppAuthenticatedShellProps {
   mainRoutesProps: AppMainRoutesProps;
 }
 
-const NAV_GROUPS_STORAGE_KEY = 'nodewarden.navGroups';
+const NAV_GROUPS_STORAGE_KEY = 'modwarden.navGroups';
 
 const DEFAULT_EXPANDED_GROUPS = {
   tools: true,
@@ -172,7 +172,7 @@ export default function AppAuthenticatedShell(props: AppAuthenticatedShellProps)
       <div className="app-shell">
         <header className="topbar">
           <div className="brand">
-            <img src="/nodewarden-logo.svg" alt="ModWarden logo" className="brand-logo" />
+            <img src="/modwarden-logo.svg" alt="ModWarden logo" className="brand-logo" />
             <span className="brand-wordmark" role="img" aria-label="ModWarden" />
             <span className="mobile-page-title">{props.currentPageTitle}</span>
           </div>

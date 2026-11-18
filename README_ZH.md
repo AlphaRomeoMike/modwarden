@@ -1,169 +1,142 @@
 <p align="center">
-  <img src="./NodeWarden.svg" alt="NodeWarden Logo" />
+  <img src="./ModWarden.svg" alt="ModWarden 标志" width="120" />
 </p>
 
+<h1 align="center">ModWarden</h1>
+
 <p align="center">
-  运行在 Cloudflare Workers 上的 Bitwarden 兼容服务端
+  运行在 Cloudflare Workers 上、兼容 Bitwarden 的密码管理服务端。
 </p>
 
 <p align="center">
   <a href="https://workers.cloudflare.com/"><img src="https://img.shields.io/badge/Powered%20by-Cloudflare-F38020?logo=cloudflare&logoColor=white" alt="Powered by Cloudflare" /></a>
   <a href="./LICENSE"><img src="https://img.shields.io/badge/License-LGPL--3.0-2ea44f" alt="License: LGPL-3.0" /></a>
-  <a href="https://github.com/shuaiplus/NodeWarden/releases/latest"><img src="https://img.shields.io/github/v/release/shuaiplus/NodeWarden?display_name=tag" alt="Latest Release" /></a>
-
-</p>
-
-<p align="center">
-  <a href="https://t.me/NodeWarden_News">Telegram 频道</a> |
-  <a href="https://t.me/NodeWarden_Official">Telegram 群组</a>
+  <a href="https://github.com/AlphaRomeoMike/modwarden/tags"><img src="https://img.shields.io/github/v/tag/AlphaRomeoMike/modwarden?label=release" alt="最新版本" /></a>
 </p>
 
 <p align="center">
   <a href="./README.md">English</a> |
-  <a href="./CONTRIBUTING.md">贡献指南</a> |
-  <a href="https://nodewarden.app">官方wiki</a>
+  <a href="./RELEASE_NOTES.md">更新日志</a> |
+  <a href="./CONTRIBUTING.md">参与贡献</a> |
+  <a href="./SECURITY.md">安全政策</a>
 </p>
 
-> **免责声明**  
-> 本项目仅供学习与交流使用，请定期备份你的密码库。  
-> 本项目与 Bitwarden 官方无关，请不要向 Bitwarden 官方反馈 NodeWarden 的问题。
+> **免责声明**
+> ModWarden 与 Bitwarden 官方无关。请不要向 Bitwarden 官方团队反馈 ModWarden 的问题。
+> 请定期备份你的密码库。
 
 ---
 
-## 与 Bitwarden 官方服务端能力对比
+## 功能对比
 
-| 能力 | Bitwarden免费版 | NodeWarden | 说明 |
+| 功能 | Bitwarden 免费版 | ModWarden | 说明 |
 |---|---|---|---|
-| 网页密码库 | ✅ | ✅ | **原创Web Vault界面** |
-| TOTP | ❌ | ✅ | 包括 `steam://` 支持 |
-| **PWA / 离线使用** | ❌ | ✅ | **可安装、离线使用、App快捷方式** |
-| **Passkey 登录** | ✅ | ✅ | **支持WebAuthn/FIDO2无密码登录** |
-| API 密钥 | ✅ | ✅ | 供bitwarden cli使用，支持获取和轮换 |
-| 登录 2FA | ✅ | ✅ | 支持 TOTP、YubiKey、Passkey |
-| 2FA 恢复码 | ✅ | ✅ | 一次性恢复码用于禁用 2FA |
-| 实时推送同步 | ✅ | ✅ | 网页端、浏览器扩展、电脑端和手机端实时同步 |
-| 附件 / Send| ✅ | ✅ | Cloudflare R2 或 KV |
-| 导入 / 导出 | ✅ | ✅ | 支持 Bitwarden JSON / CSV / **ZIP 导入（包括附件）** |
-| **云端备份中心** | ❌ | ✅ | **支持 WebDAV / S3 定时增量备份** |
-| 设备管理 | ✅ | ✅ | **删除设备、撤销信任、永久信任** |
-| 登录请求 | ✅ | ✅ | **多端免密登录审批、跨设备解锁请求** |
-| **多用户使用** | ✅ | ✅ | 支持邀请码注册 |
-| 域名规则 | ✅ | ✅ | 自定义等效域名、全局域名排除 |
-| Fill-assist | ✅ | ✅ | `POST /fill-assist` 辅助客户端自动填充；不能绕过保险库解锁 |
-| 组织 / 集合 / 成员权限 | ✅ | ❌ | 未实现 |
-| SSO / SCIM / 企业目录 | ✅ | ❌ | 未实现 |
+| 网页密码库 | ✅ | ✅ | 黑白网页密码库，键盘焦点清晰可见 |
+| TOTP | ❌ | ✅ | 支持 `steam://` |
+| **PWA / 离线** | ❌ | ✅ | **可安装，可离线使用** |
+| **通行密钥登录** | ✅ | ✅ | **无密码登录** |
+| API 密钥 | ✅ | ✅ | CLI 密钥，可创建和轮换 |
+| 登录两步验证 | ✅ | ✅ | TOTP、YubiKey、通行密钥 |
+| 两步验证恢复码 | ✅ | ✅ | 一次性关闭两步验证的恢复码 |
+| 实时推送同步 | ✅ | ✅ | 所有设备同步 |
+| 附件 / Send | ✅ | ✅ | Cloudflare KV 或 R2 |
+| 导入 / 导出 | ✅ | ✅ | Bitwarden JSON / CSV / **ZIP** |
+| **云备份中心** | ❌ | ✅ | **定时 WebDAV / S3 增量备份** |
+| 设备管理 | ✅ | ✅ | **移除设备，信任控制** |
+| 登录请求 | ✅ | ✅ | **跨设备批准登录 / 解锁** |
+| **多用户** | ✅ | ✅ | 邀请码注册 |
+| 域名规则 | ✅ | ✅ | 等效域名，全局排除 |
+| 填充辅助 | ✅ | ✅ | `POST /fill-assist` |
+| 组织 / 集合 / 角色 | ✅ | ❌ | 未实现 |
+| SSO / SCIM / 目录 | ✅ | ❌ | 未实现 |
 
 ---
 
-## 已测试客户端
+## 在 Bitwarden 客户端中使用
 
-- ✅ Windows 桌面端
-- ✅ 手机 App
-- ✅ 浏览器扩展
-- ✅ Linux 桌面端
-- ⚠️ macOS 桌面端尚未完整验证
+在 Bitwarden 移动端、桌面端或浏览器扩展的登录页面选择**自托管**，把你的 Worker 地址填为服务器 URL，例如 `https://modwarden.<你的子域名>.workers.dev`。
+
+第一个注册的账户成为所有者。之后注册新账户需要在**管理面板**中生成邀请码。
 
 ---
 
-## 可视化快速部署
+## 部署
 
-1. Fork NodeWarden 仓库到自己的 GitHub 账号
-2. 进入 [Cloudflare Workers & Pages](https://dash.cloudflare.com/?to=/:account/workers-and-pages/create)
-3. 选择 Continue with GitHub 并选择你的仓库
-4. 构建命令填 `npm run build`，部署命令填 `npm run deploy`
-- 如果你打算用 KV 模式，把部署命令改成 `npm run deploy:kv`
-5. 等部署完成后，打开生成的 Workers 域名
+生产环境由 GitHub Actions（[`deploy.yml`](./.github/workflows/deploy.yml)）在推送 `v*` 标签时自动部署，使用 KV 存储模式（[`wrangler.kv.toml`](./wrangler.kv.toml)），因此不需要 R2 存储桶，也不需要绑定银行卡。
 
-- Workers 默认域名在部分网络环境不可直连。如需自定义域名，到 [Workers 设置](https://dash.cloudflare.com/?to=/:account/workers/services/view/nodewarden/production/settings)里添加。
+### 一次性设置
 
-- 页面提示缺少 `JWT_SECRET` 时，到 Workers 设置里添加 Secret。正式环境至少使用 32 个字符以上的随机字符串，不要使用临时值或示例值。
+1. **Cloudflare：** 打开一次 **Workers & Pages**，让账户获得 `workers.dev` 子域名。
+2. **数据库：** 创建一个 D1 数据库，并把它的 ID 填入 `wrangler.kv.toml`（`database_id`）。本仓库中的 ID 是 ModWarden 的生产数据库；派生仓库必须使用自己的数据库。
+   ```bash
+   npx wrangler d1 create modwarden-db-apac --location apac
+   ```
+3. **API 令牌：** 在 Cloudflare 中打开 **My Profile → API Tokens → Create Custom Token**，并只授权给你的账户：
 
-- 如需隐藏 Web Vault，在 Workers 的“设置 → 变量和机密”中添加文本变量 `HIDE_WEB_VAULT`，值设为 `1`。启用后，服务器上的前端页面和静态资源统一返回 `404 Not Found`，Bitwarden 客户端所需的登录、同步、附件、图标、通知等服务端接口仍可使用；已经安装或缓存的 PWA 可以继续使用本地前端。删除该变量（或将值改为非 `1`）即可恢复服务器上的 Web Vault。
+   | 类型 | 权限 | 访问级别 |
+   |---|---|---|
+   | Account | Workers Scripts | Edit |
+   | Account | Workers KV Storage | Edit |
+   | Account | D1 | Edit |
+   | Account | Account Settings | Read |
+   | User | Memberships | Read |
+   | User | User Details | Read |
 
-- 这套流程里，用户实际做的是把代码交给 Cloudflare 构建并部署。代码里的 `wrangler.toml` 或 `wrangler.kv.toml` 决定绑定名，Worker 第一次处理请求时会自动初始化 D1 schema，不需要用户上传 SQL。
+4. **GitHub 密钥：** 把令牌保存到仓库的 `production` 环境中：
+   ```bash
+   gh secret set CLOUDFLARE_API_TOKEN --env production
+   ```
 
+### 发布新版本
 
-> [!TIP] 
-> 默认R2与可选KV的区别：
->   | 储存 | 是否需绑卡 | 单个附件/Send文件上限 | 免费额度 |
+1. 通过拉取请求把改动合并到 `main`。`main` 受保护，CI 必须通过。
+2. 在发布用的拉取请求中，更新 `package.json`、`package-lock.json` 和 `shared/app-version.ts` 中的版本号，并在 [`RELEASE_NOTES.md`](./RELEASE_NOTES.md) 中添加一条记录。
+3. 给合并后的提交打标签，并只推送这个标签：
+   ```bash
+   git tag -a v1.2.3 -m "ModWarden v1.2.3"
+   git push origin refs/tags/v1.2.3
+   ```
+
+工作流会构建网页密码库、部署 Worker，并在首次部署时创建 `JWT_SECRET`。要重新部署已有版本，运行 `gh workflow run deploy.yml --ref v1.2.3`。
+
+- 如果要隐藏网页密码库，在 **Workers 设置 → Variables and Secrets** 中添加名为 `HIDE_WEB_VAULT`、值为 `1` 的文本变量。启用后，服务端托管的前端页面和静态资源返回 `404 Not Found`，而 Bitwarden 客户端使用的登录、同步、附件、图标、通知等服务端接口仍可正常使用；已安装或已缓存的 PWA 可以继续使用本地前端。删除该变量（或改为 `1` 以外的值）即可恢复服务端托管的网页密码库。
+
+> [!TIP]
+> KV（本仓库默认）与 R2（[`wrangler.toml`](./wrangler.toml)，`npm run deploy`）对比：
+>   | 存储 | 需要绑卡 | 单个附件 / Send 文件上限 | 免费额度 |
 >   |---|---|---|---|
->   | R2 | 需要 | 100 MB（软限制可更改） | 10 GB |
->   | KV | 不需要 | 25 MiB（Cloudflare限制） | 1 GB |
-
-
-## 常见问题：
-- **Fork 完仓库后，在 Cloudflare 连接 GitHub 账户时看不到自己的仓库，或者选择仓库后返回 404？**  
-  这通常与 GitHub Fork 仓库的识别或 Cloudflare 对仓库的授权/同步有关。如果 Fork 后仓库名称、描述等信息与上游项目高度一致，可能更容易触发相关限制或异常。建议在 Fork 时就将仓库名称修改为与上游不同的名称，并同时修改仓库描述，例如改为 `2233warden`。如果已经完成 Fork，也可以直接在 GitHub 仓库设置中修改名称和描述，然后重新尝试在 Cloudflare 中连接。
-
-- **我删掉部署后重新部署，为什么注册又开始要求邀请码了？**  
-  因为删除 Worker 或重新部署并不会自动删除已经创建的持久化数据。D1 数据库和 KV 命名空间中的用户、邀请码及相关配置仍然存在，因此重新部署后仍会读取原来的数据，并继续要求邀请码。  
-  如果希望完全重新开始，需要同时删除对应的 **D1 数据库和 KV 命名空间**。
-
-- **我配置了 `JWT_SECRET`，为什么页面仍然提示缺少？**  
-  请将 `JWT_SECRET` 配置在 Cloudflare Workers 的 **Settings → Variables and Secrets** 中，并确保它属于 **Runtime variables and secrets**，而不是 **Build variables**。  
-  Build 阶段的变量只在项目构建过程中可用，Worker 实际运行时无法通过运行时环境读取，因此即使构建能够正常完成，页面仍可能提示 `JWT_SECRET` 缺失。
-
-- **为什么升级或重新部署后，`JWT_SECRET` 好像消失了？**  
-  建议将 `JWT_SECRET` 配置为 **Secret**，而不是普通的明文变量。`JWT_SECRET` 属于敏感的运行时凭据，也不应该出现在代码仓库中。  
-  如果部署流程会重新生成或覆盖 Worker 的变量配置，普通变量可能受到影响；使用 Secret 更适合保存这类需要在多次部署之间持续存在的敏感配置。重新部署后如果仍提示缺失，请检查当前 Worker 的 **Variables and Secrets** 中是否仍存在该 Secret。
+>   | KV | 否 | 25 MiB（Cloudflare 限制） | 1 GB |
+>   | R2 | 是 | 100 MB（软限制，可调整） | 10 GB |
 
 ---
 
-## 更新方法：
-- 手动：打开你 Fork 的 GitHub 仓库，看到顶部同步提示后，点击 `Sync fork` ➜ `Update branch`
+## 本地开发
 
-
-
-
-## CLI 部署
-
-```powershell
-git clone https://github.com/shuaiplus/NodeWarden.git
-cd NodeWarden
-
+```bash
 npm install
-npx wrangler login
-
-# 默认：R2 模式
-npm run deploy
-
-# 可选：KV 模式
-npm run deploy:kv
-
-# 本地开发
-npm run dev
-npm run dev:kv
+npm run dev:kv     # 本地 D1 和 KV 的 Worker，地址 http://localhost:8787（需要在 .dev.vars 中设置 JWT_SECRET）
+npm run dev:demo   # 使用演示数据、无需后端的网页密码库
+npm test           # 翻译检查和全部测试
 ```
 
 ---
 
+## 常见问题
 
-## 开源协议
+- **删除部署后重新部署，为什么注册又需要邀请码？**
+  删除或重新部署 Worker 不会删除它的数据。D1 数据库和 KV 命名空间中的用户、邀请码和设置仍然存在，所以新部署会继续要求邀请码。如果要完全重新开始，还需要删除对应的 **D1 数据库和 KV 命名空间**。
 
-LGPL-3.0 License
+- **网站提示缺少 `JWT_SECRET`，为什么？**
+  `JWT_SECRET` 必须作为 **Secret**（运行时变量）配置在 **Workers → Settings → Variables and Secrets** 中，而不是构建变量；Worker 在运行时读取不到构建变量。部署工作流会在首次部署时创建它；如果它被删除，下一次部署会创建新的值，所有人都需要重新登录。
 
 ---
+
+## 许可证
+
+[LGPL-3.0](./LICENSE)
 
 ## 致谢
 
-- [Bitwarden](https://bitwarden.com/) - 原始设计与客户端
+- [Bitwarden](https://bitwarden.com/) - 原始设计和客户端
 - [Vaultwarden](https://github.com/dani-garcia/vaultwarden) - 服务端实现参考
 - [Cloudflare Workers](https://workers.cloudflare.com/) - 无服务器平台
-
----
-
-## 贡献者
-
-<a href="https://github.com/shuaiplus/nodewarden/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=shuaiplus/nodewarden" alt="NodeWarden contributors" />
-</a>
-
-## Star History
-
-<a href="https://www.star-history.com/?repos=shuaiplus%2FNodeWarden&type=timeline&legend=top-left">
- <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=shuaiplus/NodeWarden&type=timeline&theme=dark&legend=top-left&sealed_token=ck0AMqR8EFMjJ6tMbnGDHT5QwMpO85IUuN7i8e82zRRNPtjoLsAAFwVzxmSZwaid97wLUwy56EEiVE9M-OY0cf16bQKBrU9GaauFoOFXGq-vMqcOyk0tIc4b3o1ZGfDw9IH8o6NUxC125TJkjKSLn9fxhFUUeNr1f1El0UcAUcjsMPl_LX80qQrlvQqp" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=shuaiplus/NodeWarden&type=timeline&legend=top-left&sealed_token=ck0AMqR8EFMjJ6tMbnGDHT5QwMpO85IUuN7i8e82zRRNPtjoLsAAFwVzxmSZwaid97wLUwy56EEiVE9M-OY0cf16bQKBrU9GaauFoOFXGq-vMqcOyk0tIc4b3o1ZGfDw9IH8o6NUxC125TJkjKSLn9fxhFUUeNr1f1El0UcAUcjsMPl_LX80qQrlvQqp" />
-   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=shuaiplus/NodeWarden&type=timeline&legend=top-left&sealed_token=ck0AMqR8EFMjJ6tMbnGDHT5QwMpO85IUuN7i8e82zRRNPtjoLsAAFwVzxmSZwaid97wLUwy56EEiVE9M-OY0cf16bQKBrU9GaauFoOFXGq-vMqcOyk0tIc4b3o1ZGfDw9IH8o6NUxC125TJkjKSLn9fxhFUUeNr1f1El0UcAUcjsMPl_LX80qQrlvQqp" />
- </picture>
-</a>

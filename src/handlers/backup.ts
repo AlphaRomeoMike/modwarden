@@ -149,14 +149,14 @@ function ensureBackupBlobName(value: string): string {
 }
 
 function contentDispositionBackup(fileName: string | null | undefined): string {
-  const fallback = 'nodewarden_backup.zip';
+  const fallback = 'modwarden_backup.zip';
   const value = String(fileName || fallback)
     .replace(/[\\/\r\n"]/g, '_')
     .trim() || fallback;
   return `attachment; filename="${value}"`;
 }
 
-const REMOTE_ATTACHMENT_INDEX_PATH = 'attachments/.nodewarden-attachment-index.v1.json';
+const REMOTE_ATTACHMENT_INDEX_PATH = 'attachments/.modwarden-attachment-index.v1.json';
 
 interface RemoteAttachmentIndexPayload {
   version: 1;
@@ -827,7 +827,7 @@ async function runImportAndAudit(
   metadata: Record<string, unknown>
 ): Promise<BackupImportExecutionResult> {
   const storage = new StorageService(env.DB);
-  const targetDeviceIdentifier = String(request.headers.get('X-NodeWarden-Acting-Device-Id') || '').trim() || null;
+  const targetDeviceIdentifier = String(request.headers.get('X-ModWarden-Acting-Device-Id') || '').trim() || null;
   const progress: BackupRestoreProgressReporter = async (event) => {
     await notifyUserBackupRestoreProgress(
       env,
@@ -986,7 +986,7 @@ export async function handleRunAdminConfiguredBackup(request: Request, env: Env,
       actorUserId: actorUser.id,
       auditMetadata: auditRequestMetadata(request),
       destinationId: body?.destinationId || null,
-      targetDeviceIdentifier: String(request.headers.get('X-NodeWarden-Acting-Device-Id') || '').trim() || null,
+      targetDeviceIdentifier: String(request.headers.get('X-ModWarden-Acting-Device-Id') || '').trim() || null,
       trigger: 'manual',
     });
     if (!outcome) {
@@ -1142,7 +1142,7 @@ export async function handleRestoreAdminRemoteBackup(request: Request, env: Env,
 
   try {
     const path = ensureRemoteRestoreCandidate(String(body.path || ''));
-    const targetDeviceIdentifier = String(request.headers.get('X-NodeWarden-Acting-Device-Id') || '').trim() || null;
+    const targetDeviceIdentifier = String(request.headers.get('X-ModWarden-Acting-Device-Id') || '').trim() || null;
     const imported = await restoreRemoteBackupInDurableObject(env, {
       actorUserId: actorUser.id,
       allowChecksumMismatch: !!body.allowChecksumMismatch,
@@ -1166,7 +1166,7 @@ export async function handleAdminExportBackup(request: Request, env: Env, actorU
   if (!isAdmin(actorUser)) return errorResponse('Forbidden', 403);
 
   const storage = new StorageService(env.DB);
-  const targetDeviceIdentifier = String(request.headers.get('X-NodeWarden-Acting-Device-Id') || '').trim() || null;
+  const targetDeviceIdentifier = String(request.headers.get('X-ModWarden-Acting-Device-Id') || '').trim() || null;
   let body: { includeAttachments?: boolean; masterPasswordHash?: string } | null = null;
   try {
     if ((request.headers.get('Content-Type') || '').includes('application/json')) {
@@ -1328,7 +1328,7 @@ export async function handleAdminImportBackup(request: Request, env: Env, actorU
     if (!checksumOk && !allowChecksumMismatch) {
       return errorResponse('Backup file checksum does not match its filename', 400);
     }
-    const imported = await runImportAndAudit(env, request, actorUser, archiveBytes, fileName || 'nodewarden_backup.zip', replaceExisting, {
+    const imported = await runImportAndAudit(env, request, actorUser, archiveBytes, fileName || 'modwarden_backup.zip', replaceExisting, {
       trigger: 'local',
       bytes: archiveBytes.byteLength,
       checksumMismatchAccepted: !checksumOk,
