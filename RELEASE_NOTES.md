@@ -21,6 +21,20 @@ Release note writing rules:
 7. The English and Chinese versions should match in content and ordering, not be two different summaries.
 -->
 
+# v1.0.3 - Rewritten README and the ModWarden Name Throughout
+
+### Improved
+
+1. **README rewritten for ModWarden.** The English and Chinese READMEs now describe ModWarden itself: features, connecting Bitwarden apps, tag-based deployment with the one-time Cloudflare and GitHub setup, local development and the FAQ. Content that only applied to the upstream project, such as its community links and fork-sync steps, is gone, and these release notes now start at ModWarden v1.0.0. Commit: [0eb2f82](https://github.com/AlphaRomeoMike/modwarden/commit/0eb2f822f15f4039bdf3f58e5e78a74018755be7).
+2. **The ModWarden name throughout.** The app, server, translations, logo files, backup file names, export files and request headers now use the ModWarden name. After updating, the Web Vault signs you out once, asks for two-step login again, treats the browser as a new device and resets preferences saved in the browser, such as theme, language and sorting. Bitwarden apps and extensions are not affected, and backup settings saved before the update keep working. JSON exports made before this version still import their items but not their embedded attachments, and the first backup after updating uploads all attachments again. Commits: [0eb2f82](https://github.com/AlphaRomeoMike/modwarden/commit/0eb2f822f15f4039bdf3f58e5e78a74018755be7), [87ed9ba](https://github.com/AlphaRomeoMike/modwarden/commit/87ed9ba2fbbd7550b45642f905e4b5a59fa28583).
+
+---
+
+### 改进
+
+1. **为 ModWarden 重写 README。** 英文和中文 README 现在介绍 ModWarden 本身：功能、连接 Bitwarden 客户端、基于标签的部署（包括一次性的 Cloudflare 和 GitHub 设置）、本地开发和常见问题。只适用于上游项目的内容（例如其社区链接和同步派生仓库的步骤）已移除，更新日志也从 ModWarden v1.0.0 开始。提交：[0eb2f82](https://github.com/AlphaRomeoMike/modwarden/commit/0eb2f822f15f4039bdf3f58e5e78a74018755be7)。
+2. **全面使用 ModWarden 名称。** 应用、服务端、翻译、标志文件、备份文件名、导出文件和请求头现在都使用 ModWarden 名称。更新后，网页密码库会让你重新登录一次并再次进行两步验证，把当前浏览器视为新设备，并重置保存在浏览器中的偏好设置，例如主题、语言和排序。Bitwarden 客户端和浏览器扩展不受影响，更新前保存的备份设置也继续有效。此版本之前导出的 JSON 文件仍可导入条目，但不会导入其中嵌入的附件；更新后的第一次备份会重新上传全部附件。提交：[0eb2f82](https://github.com/AlphaRomeoMike/modwarden/commit/0eb2f822f15f4039bdf3f58e5e78a74018755be7)、[87ed9ba](https://github.com/AlphaRomeoMike/modwarden/commit/87ed9ba2fbbd7550b45642f905e4b5a59fa28583)。
+
 # v1.0.2 - Sharp Edges, Visible Keyboard Focus, and Design Polish
 
 ### Added
