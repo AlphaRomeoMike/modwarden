@@ -15,9 +15,11 @@ run_worker_first = true
 [triggers]
 crons = [ "*/5 * * * *" ]
 
+# Pinned so every deploy uses this database (created in APAC, near the users) and never provisions a new empty one.
 [[d1_databases]]
 binding = "DB"
-database_name = "modwarden-db"
+database_name = "modwarden-db-apac"
+database_id = "90bb7971-01cb-4653-9541-9a5ea6105893"
 
 [[durable_objects.bindings]]
 name = "NOTIFICATIONS_HUB"
